@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".multitask.simultaneousrequests.MultiRequestsDemoActivity"
+            android:label="@string/title_activity_multi_requests_demo" >
+        </activity>
     </application>
 
 </manifest>

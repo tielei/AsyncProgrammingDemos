@@ -14,29 +14,23 @@
  * limitations under the License.
  */
 
-package com.zhangtielei.demos.async.programming.multitask.multilevelcaching.diskcache;
+package com.zhangtielei.demos.async.programming.multitask.multilevelcaching.diskcache.mock;
 
 import android.graphics.Bitmap;
 import com.zhangtielei.demos.async.programming.common.AsyncCallback;
+import com.zhangtielei.demos.async.programming.multitask.multilevelcaching.diskcache.ImageDiskCache;
 
 /**
  * Created by Tielei Zhang on 16/5/17.
- *
- * 图片的Disk缓存.
- * 异步接口形式.
  */
-public interface ImageDiskCache {
-    /**
-     * 异步获取缓存的Bitmap对象.
-     * @param key
-     * @param callback 用于返回缓存的Bitmap对象
-     */
-    void getImage(String key, AsyncCallback<Bitmap> callback);
-    /**
-     * 保存Bitmap对象到缓存中.
-     * @param key
-     * @param bitmap 要保存的Bitmap对象
-     * @param callback 用于返回当前保存操作的结果是成功还是失败.
-     */
-    void putImage(String key, Bitmap bitmap, AsyncCallback<Boolean> callback);
+public class MockImageDiskCache implements ImageDiskCache {
+    @Override
+    public void getImage(String key, AsyncCallback<Bitmap> callback) {
+        //TODO:
+    }
+
+    @Override
+    public void putImage(String key, Bitmap bitmap, AsyncCallback<Boolean> callback) {
+        //TODO:
+    }
 }

@@ -38,6 +38,7 @@ public class HttpResult <R> {
     public static final int UNKNOWN_FAILED = 7;//其它未知错误
 
     private int errorCode;
+    private String errorMessage;
     /**
      * response是服务器返回的响应.
      * 只有当errorCode = SUCCESS, response的值才有效.
@@ -50,6 +51,14 @@ public class HttpResult <R> {
 
     public void setErrorCode(int errorCode) {
         this.errorCode = errorCode;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 
     public R getResponse() {

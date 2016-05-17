@@ -16,22 +16,25 @@
 
 package com.zhangtielei.demos.async.programming.multitask.multilevelcaching;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by Tielei Zhang on 16/5/17.
- * 一个简单的图片加载器.
- * 两级Cache: memory cache, disk cache; 如果都没有命中, 则调用Downloader去下载.
- * 注意: 这个实现只是一个Demo, 为了演示多级缓存用.
  */
-public interface ImageLoader {
+public interface ImageLoaderListener {
     /**
-     * 设置回调监听器.
-     * @param listener
+     * 图片加载成功回调.
+     * @param url 图片地址
+     * @param bitmap 下载到的Bitmap对象.
+     * @param contextData 上下文数据.
      */
-    void setListener(ImageLoaderListener listener);
+    void imageLoadSuccess(String url, Bitmap bitmap, Object contextData);
     /**
-     * 根据指定Url启动图片加载.
-     * @param url 要下载的资源地址.
-     * @param contextData 上下文数据, 在回调接口中会透传回去.可以是任何类型.
+     * 图片加载失败回调.
+     * @param url 图片地址
+     * @param errorCode 错误码.
+     * @param errorMessage 错误信息简短描述. 供调用者理解错误原因.
+     * @param contextData 上下文数据.
      */
-    void startImageLoad(String url, Object contextData);
+    void imageLoadFailed(String url, int errorCode, String errorMessage, Object contextData);
 }

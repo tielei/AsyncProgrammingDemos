@@ -23,6 +23,17 @@ import android.graphics.Bitmap;
  */
 public interface ImageLoaderListener {
     /**
+     * 错误码定义
+     */
+    int SUCCESS = 0;//成功
+    int BITMAP_DECODE_FAILED = 1;//图片解码失败
+    int NETWORK_UNAVAILABLE = 2;//网络不可用
+    int SDCARD_NOT_EXISTS = 3;//SD卡不存在(下载的图片文件没地方存)
+    int SD_CARD_NO_SPACE_LEFT = 4;//SD卡空间不足(下载的图片文件没地方存)
+    int DOWNLOAD_FAILED = 5;//图片文件下载过程出错
+    int UNKNOWN_FAILED = 6;//其它未知错误
+
+    /**
      * 图片加载成功回调.
      * @param url 图片地址
      * @param bitmap 下载到的Bitmap对象.

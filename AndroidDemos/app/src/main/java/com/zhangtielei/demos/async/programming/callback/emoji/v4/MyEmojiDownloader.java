@@ -26,7 +26,7 @@ import com.zhangtielei.demos.async.programming.callback.emoji.EmojiPackage;
 import java.util.List;
 
 /**
- * Created by charleszhang on 16/5/2.
+ * Created by Tielei Zhang on 16/5/2.
  * EmojiDownloader的第4个版本的实现: 利用支持上下文传递的异步接口.
  */
 public class MyEmojiDownloader implements EmojiDownloader, DownloadListener {

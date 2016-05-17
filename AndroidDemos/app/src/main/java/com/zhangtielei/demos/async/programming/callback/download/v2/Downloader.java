@@ -17,7 +17,7 @@ package com.zhangtielei.demos.async.programming.callback.download.v2;
 
 
 /**
- * Created by charleszhang on 16/5/15.
+ * Created by Tielei Zhang on 16/5/15.
  */
 public interface Downloader {
     /**

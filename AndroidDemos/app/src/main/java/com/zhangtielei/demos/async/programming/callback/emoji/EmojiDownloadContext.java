@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by charleszhang on 16/5/1.
+ * Created by Tielei Zhang on 16/5/1.
  * 表情包下载上下文
  */
 public class EmojiDownloadContext {

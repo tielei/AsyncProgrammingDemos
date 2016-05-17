@@ -16,7 +16,7 @@
 package com.zhangtielei.demos.async.programming.callback.download.v1;
 
 /**
- * Created by charleszhang on 4/17/16.
+ * Created by Tielei Zhang on 4/17/16.
  * 下载器接口定义.
  */
 public interface Downloader {

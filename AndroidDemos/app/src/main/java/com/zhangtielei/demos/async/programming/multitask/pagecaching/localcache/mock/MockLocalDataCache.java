@@ -16,7 +16,7 @@
 
 package com.zhangtielei.demos.async.programming.multitask.pagecaching.localcache.mock;
 
-import com.zhangtielei.demos.async.programming.multitask.pagecaching.localcache.AsyncCallback;
+import com.zhangtielei.demos.async.programming.common.AsyncCallback;
 import com.zhangtielei.demos.async.programming.multitask.pagecaching.localcache.LocalDataCache;
 import com.zhangtielei.demos.async.programming.multitask.pagecaching.model.HttpResponse;
 
@@ -30,7 +30,7 @@ public class MockLocalDataCache implements LocalDataCache {
     }
 
     @Override
-    public void saveCachingData(String key, HttpResponse data, AsyncCallback<Boolean> callback) {
+    public void putCachingData(String key, HttpResponse data, AsyncCallback<Boolean> callback) {
         //TODO:
     }
 }

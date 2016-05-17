@@ -13,20 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.zhangtielei.demos.async.programming.callback.download.v2;
+
+package com.zhangtielei.demos.async.programming.multitask.multilevelcaching;
 
 /**
- * Created by Tielei Zhang on 16/5/1.
- * 下载器的实现(stub).
+ * Created by Tielei Zhang on 16/5/17.
+ * 一个简单的图片加载器.
+ * 注意: 这个实现只是一个Demo, 为了演示多级缓存用.
  */
-public class MyDownloader implements Downloader {
-    @Override
-    public void setListener(DownloadListener listener) {
-        //TODO:
-    }
-
-    @Override
-    public void startDownload(String url, String localPath) {
-        //TODO:
-    }
+public class ImageLoader {
 }

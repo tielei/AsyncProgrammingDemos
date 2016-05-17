@@ -16,7 +16,7 @@
 package com.zhangtielei.demos.async.programming.callback.download.v3_simplified;
 
 /**
- * Created by charleszhang on 16/5/11.
+ * Created by Tielei Zhang on 16/5/11.
  * 演示多层嵌套导致的callback hell
  */
 public class CallbackHellExample {

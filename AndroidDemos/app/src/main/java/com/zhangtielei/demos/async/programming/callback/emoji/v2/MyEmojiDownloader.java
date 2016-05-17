@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by charleszhang on 16/5/1.
+ * Created by Tielei Zhang on 16/5/1.
  * EmojiDownloader的第2个版本的实现: 用映射关系来保存上下文.
  */
 public class MyEmojiDownloader implements EmojiDownloader, DownloadListener {

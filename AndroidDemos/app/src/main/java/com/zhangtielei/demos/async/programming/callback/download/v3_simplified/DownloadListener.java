@@ -16,7 +16,7 @@
 package com.zhangtielei.demos.async.programming.callback.download.v3_simplified;
 
 /**
- * Created by charleszhang on 16/5/11.
+ * Created by Tielei Zhang on 16/5/11.
  * 下载器回调接口定义(支持回传上下文参数).
  */
 public interface DownloadListener {

@@ -13,20 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.zhangtielei.demos.async.programming.callback.download.v2;
+
+package com.zhangtielei.demos.async.programming.multitask.multilevelcaching.memcache;
+
+import android.graphics.Bitmap;
 
 /**
- * Created by Tielei Zhang on 16/5/1.
- * 下载器的实现(stub).
+ * Created by Tielei Zhang on 16/5/17.
+ *
+ * 图片Memory缓存.
+ * 由于是内存操作, 采用同步接口.
  */
-public class MyDownloader implements Downloader {
-    @Override
-    public void setListener(DownloadListener listener) {
-        //TODO:
-    }
-
-    @Override
-    public void startDownload(String url, String localPath) {
-        //TODO:
-    }
+public interface ImageMemCache {
+    Bitmap getImage(String key);
+    void putImage(String key, Bitmap bitmap);
 }

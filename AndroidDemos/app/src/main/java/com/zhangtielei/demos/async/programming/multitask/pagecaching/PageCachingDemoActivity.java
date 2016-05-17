@@ -25,7 +25,7 @@ import com.zhangtielei.demos.async.programming.multitask.http.HttpListener;
 import com.zhangtielei.demos.async.programming.multitask.http.HttpResult;
 import com.zhangtielei.demos.async.programming.multitask.http.HttpService;
 import com.zhangtielei.demos.async.programming.multitask.http.mock.MockHttpService;
-import com.zhangtielei.demos.async.programming.multitask.pagecaching.localcache.AsyncCallback;
+import com.zhangtielei.demos.async.programming.common.AsyncCallback;
 import com.zhangtielei.demos.async.programming.multitask.pagecaching.localcache.LocalDataCache;
 import com.zhangtielei.demos.async.programming.multitask.pagecaching.localcache.mock.MockLocalDataCache;
 import com.zhangtielei.demos.async.programming.multitask.pagecaching.model.HttpRequest;
@@ -50,7 +50,7 @@ public class PageCachingDemoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_page_caching_demo);
 
         //同时发起本地数据请求和远程Http请求
-        String userId = "xxx";
+        final String userId = "xxx";
         localDataCache.getCachingData(userId, new AsyncCallback<HttpResponse>() {
             @Override
             public void onResult(HttpResponse data) {
@@ -70,6 +70,8 @@ public class PageCachingDemoActivity extends AppCompatActivity {
                         if (result.getErrorCode() == HttpResult.SUCCESS) {
                             dataFromHttpReady = true;
                             processData(result.getResponse());
+                            //从Http拉到最新数据, 更新本地缓存
+                            localDataCache.putCachingData(userId, result.getResponse(), null);
                         }
                         else {
                             processError(result.getErrorCode());

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.zhangtielei.demos.async.programming.multitask.pagecaching.localcache;
+package com.zhangtielei.demos.async.programming.common;
 
 /**
  * Created by Tielei Zhang on 16/5/17.

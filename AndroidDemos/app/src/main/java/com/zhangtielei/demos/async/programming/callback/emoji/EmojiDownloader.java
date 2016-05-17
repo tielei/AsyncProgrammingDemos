@@ -16,7 +16,7 @@
 package com.zhangtielei.demos.async.programming.callback.emoji;
 
 /**
- * Created by charleszhang on 16/5/1.
+ * Created by Tielei Zhang on 16/5/1.
  * 表情包下载器接口.
  */
 public interface EmojiDownloader {

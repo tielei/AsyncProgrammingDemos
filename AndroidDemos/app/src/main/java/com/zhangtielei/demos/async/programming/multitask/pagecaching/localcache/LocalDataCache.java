@@ -16,6 +16,7 @@
 
 package com.zhangtielei.demos.async.programming.multitask.pagecaching.localcache;
 
+import com.zhangtielei.demos.async.programming.common.AsyncCallback;
 import com.zhangtielei.demos.async.programming.multitask.pagecaching.model.HttpResponse;
 
 /**
@@ -36,5 +37,5 @@ public interface LocalDataCache {
      * @param data 要保存的HttpResponse对象
      * @param callback 用于返回当前保存操作的结果是成功还是失败.
      */
-    void saveCachingData(String key, HttpResponse data, AsyncCallback<Boolean> callback);
+    void putCachingData(String key, HttpResponse data, AsyncCallback<Boolean> callback);
 }

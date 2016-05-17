@@ -14,19 +14,23 @@
  * limitations under the License.
  */
 
-package com.zhangtielei.demos.async.programming.multitask.http.mock;
+package com.zhangtielei.demos.async.programming.multitask.pagecaching.localcache.mock;
 
-import com.zhangtielei.demos.async.programming.multitask.http.HttpListener;
-import com.zhangtielei.demos.async.programming.multitask.http.HttpService;
+import com.zhangtielei.demos.async.programming.multitask.pagecaching.localcache.AsyncCallback;
+import com.zhangtielei.demos.async.programming.multitask.pagecaching.localcache.LocalDataCache;
+import com.zhangtielei.demos.async.programming.multitask.pagecaching.model.HttpResponse;
 
 /**
  * Created by Tielei Zhang on 16/5/17.
- *
- * HttpService的一个假的实现.
  */
-public class MockHttpService implements HttpService {
+public class MockLocalDataCache implements LocalDataCache {
     @Override
-    public <T, R> void doRequest(String apiUrl, T request, HttpListener<? super T, R> listener, Object contextData) {
+    public void getCachingData(String key, AsyncCallback<HttpResponse> callback) {
+        //TODO:
+    }
+
+    @Override
+    public void saveCachingData(String key, HttpResponse data, AsyncCallback<Boolean> callback) {
         //TODO:
     }
 }

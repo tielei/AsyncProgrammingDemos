@@ -33,7 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 展示两个请求同时发生的异步处理过程.
+ * 演示两个请求同时发生的异步处理过程.
  */
 public class MultiRequestsDemoActivity extends AppCompatActivity {
     private HttpService httpService = new MockHttpService();
@@ -51,20 +51,23 @@ public class MultiRequestsDemoActivity extends AppCompatActivity {
         httpService.doRequest("http://...", new HttpRequest1(),
                 new HttpListener<HttpRequest1, HttpResponse1>() {
                     @Override
-                    public void doResult(String apiUrl,
+                    public void onResult(String apiUrl,
                                          HttpRequest1 request,
                                          HttpResult<HttpResponse1> result,
                                          Object contextData) {
                         //将请求结果缓存下来
                         httpResults.put("request-1", result);
                         if (checkAllHttpResultsReady()) {
+                            //两个请求都已经结束
                             HttpResult<HttpResponse1> result1 = result;
                             HttpResult<HttpResponse2> result2 = (HttpResult<HttpResponse2>) httpResults.get("request-2");
                             if (checkAllHttpResultsSuccess()) {
-                                processHttpResponses(result1.getResponse(), result2.getResponse());
+                                //两个请求都成功了
+                                processData(result1.getResponse(), result2.getResponse());
                             }
                             else {
-                                processHttpErrorResults(result1, result2);
+                                //两个请求并未完全成功, 按失败处理
+                                processError(result1.getErrorCode(), result2.getErrorCode());
                             }
                         }
                     }
@@ -73,20 +76,23 @@ public class MultiRequestsDemoActivity extends AppCompatActivity {
         httpService.doRequest("http://...", new HttpRequest2(),
                 new HttpListener<HttpRequest2, HttpResponse2>() {
                     @Override
-                    public void doResult(String apiUrl,
+                    public void onResult(String apiUrl,
                                          HttpRequest2 request,
                                          HttpResult<HttpResponse2> result,
                                          Object contextData) {
                         //将请求结果缓存下来
                         httpResults.put("request-2", result);
                         if (checkAllHttpResultsReady()) {
+                            //两个请求都已经结束
                             HttpResult<HttpResponse1> result1 = (HttpResult<HttpResponse1>) httpResults.get("request-1");
                             HttpResult<HttpResponse2> result2 = result;
                             if (checkAllHttpResultsSuccess()) {
-                                processHttpResponses(result1.getResponse(), result2.getResponse());
+                                //两个请求都成功了
+                                processData(result1.getResponse(), result2.getResponse());
                             }
                             else {
-                                processHttpErrorResults(result1, result2);
+                                //两个请求并未完全成功, 按失败处理
+                                processError(result1.getErrorCode(), result2.getErrorCode());
                             }
                         }
                     }
@@ -123,11 +129,11 @@ public class MultiRequestsDemoActivity extends AppCompatActivity {
         return true;
     }
 
-    private void processHttpResponses(HttpResponse1 response1, HttpResponse2 response2) {
+    private void processData(HttpResponse1 data1, HttpResponse2 data2) {
         //TODO: 更新UI, 展示请求结果. 省略此处代码
     }
 
-    private void processHttpErrorResults(HttpResult<HttpResponse1> result1, HttpResult<HttpResponse2> result2) {
+    private void processError(int errorCode1, int errorCode2) {
         //TODO: 更新UI,展示错误. 省略此处代码
     }
 

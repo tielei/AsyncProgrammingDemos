@@ -24,6 +24,10 @@
             android:name=".multitask.pagecaching.PageCachingDemoActivity"
             android:label="@string/title_activity_page_caching_demo" >
         </activity>
+        <activity
+                android:name=".multitask.simultaneousrequests.rxjavasolution.MultiRequestsDemoActivity"
+                android:label="@string/title_activity_multi_requests_demo" >
+        </activity>
     </application>
 
 </manifest>

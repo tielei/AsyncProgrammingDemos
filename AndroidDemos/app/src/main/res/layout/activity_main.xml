@@ -29,4 +29,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="测试多请求RxJava merge"
+            android:onClick="testRxJavaMerge"/>
+
 </RelativeLayout>

@@ -20,4 +20,13 @@ package com.zhangtielei.demos.async.programming.multitask.simultaneousrequests.m
  * Created by Tielei Zhang on 16/5/17.
  */
 public class HttpResponse2 {
+    private String text;
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 }

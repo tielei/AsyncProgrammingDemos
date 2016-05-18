@@ -15,10 +15,13 @@
  */
 package com.zhangtielei.demos.async.programming;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import com.zhangtielei.demos.async.programming.multitask.simultaneousrequests.rxjavasolution.MultiRequestsDemoActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    public void testRxJavaMerge(View v) {
+        Intent intent = new Intent(this, MultiRequestsDemoActivity.class);
+        startActivity(intent);
     }
 
     @Override

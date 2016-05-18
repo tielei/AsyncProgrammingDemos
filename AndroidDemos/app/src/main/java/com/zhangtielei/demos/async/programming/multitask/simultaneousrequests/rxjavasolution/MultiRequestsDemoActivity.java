@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import com.zhangtielei.demos.async.programming.R;
 import com.zhangtielei.demos.async.programming.multitask.http.HttpListener;
 import com.zhangtielei.demos.async.programming.multitask.http.HttpResult;
@@ -44,10 +45,14 @@ import rx.observables.AsyncOnSubscribe;
 public class MultiRequestsDemoActivity extends AppCompatActivity {
     private HttpService httpService = new MockHttpService();
 
+    private TextView apiResultDisplayTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi_requests_demo);
+
+        apiResultDisplayTextView = (TextView) findViewById(R.id.api_result_display);
 
         /**
          * 先根据AsyncOnSubscribe机制将两次请求封装成两个Observable
@@ -131,10 +136,10 @@ public class MultiRequestsDemoActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(Object response) {
-                        if (response instanceof HttpRequest1) {
+                        if (response instanceof HttpResponse1) {
                             response1 = (HttpResponse1) response;
                         }
-                        else if (response instanceof HttpRequest1) {
+                        else if (response instanceof HttpResponse2) {
                             response2 = (HttpResponse2) response;
                         }
                     }
@@ -152,11 +157,13 @@ public class MultiRequestsDemoActivity extends AppCompatActivity {
     }
 
     private void processData(HttpResponse1 data1, HttpResponse2 data2) {
-        //TODO: 更新UI, 展示请求结果. 省略此处代码
+        //更新UI, 展示请求结果.
+        apiResultDisplayTextView.setText(data1.getText() + "\n" + data2.getText());
     }
 
     private void processError(Throwable e) {
-        //TODO: 更新UI,展示错误. 省略此处代码
+        //更新UI,展示错误.
+        apiResultDisplayTextView.setText("request failed: " + e.getMessage());
     }
 
     @Override

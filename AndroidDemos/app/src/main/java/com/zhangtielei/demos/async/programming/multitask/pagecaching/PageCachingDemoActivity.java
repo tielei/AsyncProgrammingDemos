@@ -34,7 +34,7 @@ import com.zhangtielei.demos.async.programming.multitask.pagecaching.model.HttpR
 /**
  * 演示Page Caching的异步处理过程.
  *
- * Page Caching策略: 页面打开后先展示本地缓存数据, 如果
+ * Page Caching策略: 页面打开后先展示本地缓存数据, 然后API请求返回数据后, 再重新刷新页面.
  */
 public class PageCachingDemoActivity extends AppCompatActivity {
     private HttpService httpService = new MockHttpService();

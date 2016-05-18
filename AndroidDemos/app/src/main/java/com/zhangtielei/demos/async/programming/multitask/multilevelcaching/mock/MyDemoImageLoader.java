@@ -63,7 +63,7 @@ public class MyDemoImageLoader implements ImageLoader, DownloadListener {
             return;
         }
 
-        //先检查二级缓存: disk cache
+        //检查二级缓存: disk cache
         imageDiskCache.getImage(url, new AsyncCallback<Bitmap>() {
             @Override
             public void onResult(Bitmap bitmap) {

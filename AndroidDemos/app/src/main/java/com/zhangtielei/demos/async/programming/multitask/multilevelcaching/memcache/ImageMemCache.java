@@ -26,5 +26,5 @@ import android.graphics.Bitmap;
  */
 public interface ImageMemCache {
     Bitmap getImage(String key);
-    void putImage(String key, Bitmap bitmap);
+    boolean putImage(String key, Bitmap bitmap);
 }

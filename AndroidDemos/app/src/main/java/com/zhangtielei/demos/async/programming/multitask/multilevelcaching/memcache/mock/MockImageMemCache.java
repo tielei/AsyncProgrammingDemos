@@ -30,7 +30,8 @@ public class MockImageMemCache implements ImageMemCache {
     }
 
     @Override
-    public void putImage(String key, Bitmap bitmap) {
+    public boolean putImage(String key, Bitmap bitmap) {
         //TODO:
+        return true;
     }
 }

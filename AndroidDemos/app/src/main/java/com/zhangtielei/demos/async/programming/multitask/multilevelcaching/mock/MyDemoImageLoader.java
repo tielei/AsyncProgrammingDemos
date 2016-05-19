@@ -17,6 +17,8 @@
 package com.zhangtielei.demos.async.programming.multitask.multilevelcaching.mock;
 
 import android.graphics.Bitmap;
+import android.os.Handler;
+import android.os.Looper;
 import com.zhangtielei.demos.async.programming.callback.download.v3.DownloadListener;
 import com.zhangtielei.demos.async.programming.callback.download.v3.Downloader;
 import com.zhangtielei.demos.async.programming.callback.download.v3.MyDownloader;
@@ -43,6 +45,7 @@ public class MyDemoImageLoader implements ImageLoader, DownloadListener {
     private ImageDiskCache imageDiskCache = new MockImageDiskCache();
     private Downloader downloader = new MyDownloader();
     private ExecutorService imageDecodingExecutor = Executors.newCachedThreadPool();
+    private Handler mainHandler = new Handler(Looper.getMainLooper());
 
     public MyDemoImageLoader() {
         downloader.setListener(this);
@@ -86,16 +89,22 @@ public class MyDemoImageLoader implements ImageLoader, DownloadListener {
         imageDecodingExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                Bitmap bitmap = decodeBitmap(new File(localPath));
-                if (bitmap != null) {
-                    imageMemCache.putImage(url, bitmap);
-                    imageDiskCache.putImage(url, bitmap, null);
-                    successCallback(url, bitmap, contextData);
-                }
-                else {
-                    //解码失败
-                    failureCallback(url, ImageLoaderListener.BITMAP_DECODE_FAILED, contextData);
-                }
+                final Bitmap bitmap = decodeBitmap(new File(localPath));
+                //重新调度回主线程
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (bitmap != null) {
+                            imageMemCache.putImage(url, bitmap);
+                            imageDiskCache.putImage(url, bitmap, null);
+                            successCallback(url, bitmap, contextData);
+                        }
+                        else {
+                            //解码失败
+                            failureCallback(url, ImageLoaderListener.BITMAP_DECODE_FAILED, contextData);
+                        }
+                    }
+                });
             }
         });
     }

@@ -39,7 +39,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class MockHttpService implements HttpService {
     private ExecutorService executorService = Executors.newCachedThreadPool();
-    private Handler handler = new Handler(Looper.getMainLooper());
+    private Handler mainHandler = new Handler(Looper.getMainLooper());
     private Random rand = new Random();
 
     @Override
@@ -61,7 +61,7 @@ public class MockHttpService implements HttpService {
                 result.setResponse((R) httpResponse);
 
                 //回调
-                handler.post(new Runnable() {
+                mainHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         if (listener != null) {

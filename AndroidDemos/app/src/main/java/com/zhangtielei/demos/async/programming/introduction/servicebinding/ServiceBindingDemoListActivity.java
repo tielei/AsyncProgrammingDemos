@@ -13,7 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.zhangtielei.demos.async.programming;
+
+package com.zhangtielei.demos.async.programming.introduction.servicebinding;
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -24,13 +25,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import com.zhangtielei.demos.async.programming.introduction.servicebinding.ServiceBindingDemoListActivity;
+import com.zhangtielei.demos.async.programming.R;
 
 /**
- * 演示程序的入口页面.
+ * Service Binding例子的入口列表页面
  */
-public class MainActivity extends AppCompatActivity {
-
+public class ServiceBindingDemoListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +40,8 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.item_list);
         Resources resources = getResources();
         String[] textList = new String[] {
-                resources.getString(R.string.blog_title_1),
-                resources.getString(R.string.blog_title_2),
-                resources.getString(R.string.blog_title_3),
-                resources.getString(R.string.blog_title_4),
-                resources.getString(R.string.blog_title_5),
-                resources.getString(R.string.blog_title_6),
-                resources.getString(R.string.blog_title_7),
+                resources.getString(R.string.example_service_binding_v1),
+                resources.getString(R.string.example_service_binding_v2),
         };
         ListAdapter listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, textList);
         listView.setAdapter(listAdapter);
@@ -55,20 +50,10 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        Intent intent = new Intent(MainActivity.this, ServiceBindingDemoListActivity.class);
+                        Intent intent = new Intent(ServiceBindingDemoListActivity.this, ServiceBindingDemoListActivity.class);
                         startActivity(intent);
                         break;
                     case 1:
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
-                    case 5:
-                        break;
-                    case 6:
                         break;
                     default:
                         break;

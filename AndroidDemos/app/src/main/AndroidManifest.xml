@@ -25,8 +25,16 @@
             android:label="@string/title_activity_page_caching_demo" >
         </activity>
         <activity
-                android:name=".multitask.simultaneousrequests.rxjavasolution.MultiRequestsDemoActivity"
-                android:label="@string/title_activity_multi_requests_demo" >
+            android:name=".multitask.simultaneousrequests.rxjavasolution.MultiRequestsDemoActivity"
+            android:label="@string/title_activity_multi_requests_demo" >
+        </activity>
+        <activity
+            android:name=".introduction.servicebinding.v1.ServiceBindingDemoActivity"
+            android:label="@string/title_activity_service_binding_demo" >
+        </activity>
+        <activity
+            android:name=".introduction.servicebinding.ServiceBindingDemoListActivity"
+            android:label="@string/title_activity_service_binding_demo_list" >
         </activity>
     </application>
 

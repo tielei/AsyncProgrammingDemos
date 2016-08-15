@@ -16,10 +16,6 @@
 
 package com.zhangtielei.demos.async.programming.multitask.simultaneousrequests.rxjavasolution;
 
-/**
- * Created by Tielei Zhang on 16/5/18.
- */
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;

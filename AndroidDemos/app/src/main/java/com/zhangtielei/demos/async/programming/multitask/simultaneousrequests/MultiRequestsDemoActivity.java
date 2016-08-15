@@ -45,7 +45,7 @@ public class MultiRequestsDemoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_multi_requests_demo);
+        setContentView(R.layout.activity_log_display);
 
         //同时发起两个异步请求
         httpService.doRequest("http://...", new HttpRequest1(),

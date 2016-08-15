@@ -16,42 +16,90 @@
 
 package com.zhangtielei.demos.async.programming.introduction.servicebinding.v1;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.os.IBinder;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 import com.zhangtielei.demos.async.programming.R;
+import com.zhangtielei.demos.async.programming.common.utils.TextLogUtil;
+import com.zhangtielei.demos.async.programming.introduction.servicebinding.service.SomeService;
 
 /**
- * xxx
+ * 用于演示最普通的Service绑定和解绑.
  */
-public class ServiceBindingDemoActivity extends AppCompatActivity {
+public class ServiceBindingDemoActivity extends AppCompatActivity implements SomeService.ServiceListener {
+    /**
+     * 对于Service的引用
+     */
+    private SomeService someService;
+
+    private TextView description;
+    private TextView logTextView;
+
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            //解除Activity与Service的引用和监听关系
+            //...
+            if (someService != null) {
+                someService.removeListener(ServiceBindingDemoActivity.this);
+                someService = null;
+            }
+            TextLogUtil.println(logTextView, "disconnected to SomeService...");
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            //建立Activity与Service的引用和监听关系
+            //...
+            SomeService.ServiceBinder binder = (SomeService.ServiceBinder) service;
+            someService = binder.getService();
+            someService.addListener(ServiceBindingDemoActivity.this);
+            TextLogUtil.println(logTextView, "bound to SomeService...");
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_service_binding_demo);
+        setContentView(R.layout.activity_log_display);
+
+        description = (TextView) findViewById(R.id.description);
+        logTextView = (TextView) findViewById(R.id.log_display);
+
+        description.setText(R.string.service_binding_v1_description);
+
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_service_binding_demo, menu);
-        return true;
+    public void onResume() {
+        super.onResume();
+
+        Intent intent = new Intent(this, SomeService.class);
+        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
+        TextLogUtil.println(logTextView, "Requesting bind to SomeService...");
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void onPause() {
+        super.onPause();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        //解除Activity与Service的引用和监听关系
+        //...
+        if (someService != null) {
+            someService.removeListener(ServiceBindingDemoActivity.this);
+            someService = null;
         }
+        unbindService(serviceConnection);
+        TextLogUtil.println(logTextView, "unbind to SomeService...");
+    }
 
-        return super.onOptionsItemSelected(item);
+    @Override
+    public void callback() {
+        //TODO:
     }
 }

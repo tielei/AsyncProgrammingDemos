@@ -36,6 +36,12 @@
             android:name=".introduction.servicebinding.ServiceBindingDemoListActivity"
             android:label="@string/title_activity_service_binding_demo_list" >
         </activity>
+
+        <service
+            android:name=".introduction.servicebinding.service.SomeService"
+            android:enabled="true"
+            android:exported="false" >
+        </service>
     </application>
 
 </manifest>

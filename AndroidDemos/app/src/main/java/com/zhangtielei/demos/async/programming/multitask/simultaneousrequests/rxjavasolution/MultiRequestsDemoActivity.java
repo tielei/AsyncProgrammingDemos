@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import com.zhangtielei.demos.async.programming.R;
+import com.zhangtielei.demos.async.programming.common.utils.TextLogUtil;
 import com.zhangtielei.demos.async.programming.multitask.http.HttpListener;
 import com.zhangtielei.demos.async.programming.multitask.http.HttpResult;
 import com.zhangtielei.demos.async.programming.multitask.http.HttpService;
@@ -41,14 +42,18 @@ import rx.observables.AsyncOnSubscribe;
 public class MultiRequestsDemoActivity extends AppCompatActivity {
     private HttpService httpService = new MockHttpService();
 
-    private TextView apiResultDisplayTextView;
+    private TextView description;
+    private TextView logTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_multi_requests_demo);
+        setContentView(R.layout.activity_log_display);
 
-        apiResultDisplayTextView = (TextView) findViewById(R.id.api_result_display);
+        description = (TextView) findViewById(R.id.description);
+        logTextView = (TextView) findViewById(R.id.log_display);
+
+        description.setText(R.string.multirequest_rxjava_demo_description);
 
         /**
          * 先根据AsyncOnSubscribe机制将两次请求封装成两个Observable
@@ -124,6 +129,8 @@ public class MultiRequestsDemoActivity extends AppCompatActivity {
             }
         });
 
+        TextLogUtil.println(logTextView, "Start request1 & request2...");
+
         //把两个Observable表示的request用merge连接起来
         Observable.merge(request1, request2)
                 .subscribe(new Subscriber<Object>() {
@@ -154,12 +161,13 @@ public class MultiRequestsDemoActivity extends AppCompatActivity {
 
     private void processData(HttpResponse1 data1, HttpResponse2 data2) {
         //更新UI, 展示请求结果.
-        apiResultDisplayTextView.setText(data1.getText() + "\n" + data2.getText());
+        TextLogUtil.println(logTextView, data1.getText());
+        TextLogUtil.println(logTextView, data2.getText());
     }
 
     private void processError(Throwable e) {
         //更新UI,展示错误.
-        apiResultDisplayTextView.setText("request failed: " + e.getMessage());
+        TextLogUtil.println(logTextView, "request failed: " + e.getMessage());
     }
 
     @Override

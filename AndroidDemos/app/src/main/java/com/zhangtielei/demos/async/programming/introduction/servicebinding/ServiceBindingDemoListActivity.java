@@ -26,6 +26,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import com.zhangtielei.demos.async.programming.R;
+import com.zhangtielei.demos.async.programming.introduction.servicebinding.v1.ServiceBindingDemoActivity;
+import com.zhangtielei.demos.async.programming.multitask.simultaneousrequests.rxjavasolution.MultiRequestsDemoActivity;
 
 /**
  * Service Binding例子的入口列表页面
@@ -50,11 +52,17 @@ public class ServiceBindingDemoListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        Intent intent = new Intent(ServiceBindingDemoListActivity.this, ServiceBindingDemoListActivity.class);
+                    {
+                        Intent intent = new Intent(ServiceBindingDemoListActivity.this, ServiceBindingDemoActivity.class);
                         startActivity(intent);
                         break;
+                    }
                     case 1:
+                    {
+                        Intent intent = new Intent(ServiceBindingDemoListActivity.this, MultiRequestsDemoActivity.class);
+                        startActivity(intent);
                         break;
+                    }
                     default:
                         break;
                 }

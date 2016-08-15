@@ -26,20 +26,23 @@
 
     <TextView
             android:id="@+id/description"
-            android:text="@string/multirequest_rxjava_demo_description"
+            android:text=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="10dp"/>
 
-    <TextView
-            android:id="@+id/api_result_display"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/description"
-            android:layout_marginTop="20dp"
-            android:text="Requesting..."/>
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/description"
+                android:layout_marginTop="20dp">
+        <TextView
+                android:id="@+id/log_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""/>
+    </ScrollView>
 
 </RelativeLayout>

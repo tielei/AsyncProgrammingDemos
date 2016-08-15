@@ -18,6 +18,7 @@ package com.zhangtielei.demos.async.programming.common.utils;
 
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -31,7 +32,10 @@ public class TextLogUtil {
      * @param log
      */
     public static void println(TextView logTextView, CharSequence log) {
-        CharSequence newText = String.valueOf(new Date()) + ": " + log;
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");
+        String timestamp = sdf.format(new Date());
+
+        CharSequence newText = timestamp + ": " + log;
         CharSequence oldText = logTextView.getText();
         if (oldText == null || oldText.length() <= 0) {
             logTextView.setText(newText);

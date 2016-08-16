@@ -39,10 +39,11 @@ public class EmojiDownloadDemoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_display);
+
         description = (TextView) findViewById(R.id.description);
         logTextView = (TextView) findViewById(R.id.log_display);
 
-        description.setText(R.string.emoji_download_demo1_description);
+        description.setText(R.string.emoji_download_demo2_description);
 
         emojiDownloader = new MyEmojiDownloader();
         emojiDownloader.setEmojiDownloadListener(new EmojiDownloader.EmojiDownloadListener() {
@@ -64,7 +65,7 @@ public class EmojiDownloadDemoActivity extends AppCompatActivity {
 
         //构造要下载的表情包
         EmojiPackage emojiPackage = new EmojiPackage();
-        emojiPackage.emojiId = 1003;
+        emojiPackage.emojiId = 1002;
         emojiPackage.emojiUrls = new ArrayList<String>();
         emojiPackage.emojiUrls.add("http://zhangtielei.com/demourls/1.png");
         emojiPackage.emojiUrls.add("http://zhangtielei.com/demourls/2.png");

@@ -65,9 +65,17 @@ public class EmojiDownloadDemoListActivity extends AppCompatActivity {
                         break;
                     }
                     case 2:
+                    {
+                        Intent intent = new Intent(EmojiDownloadDemoListActivity.this, com.zhangtielei.demos.async.programming.callback.emoji.v3.EmojiDownloadDemoActivity.class);
+                        startActivity(intent);
                         break;
+                    }
                     case 3:
+                    {
+                        Intent intent = new Intent(EmojiDownloadDemoListActivity.this, com.zhangtielei.demos.async.programming.callback.emoji.v4.EmojiDownloadDemoActivity.class);
+                        startActivity(intent);
                         break;
+                    }
                     default:
                         break;
                 }

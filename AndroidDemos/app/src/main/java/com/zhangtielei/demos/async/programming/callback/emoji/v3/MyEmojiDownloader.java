@@ -48,7 +48,16 @@ public class MyEmojiDownloader implements EmojiDownloader {
                 downloadContext.downloadedEmoji++;
                 EmojiPackage emojiPackage = downloadContext.emojiPackage;
                 if (downloadContext.downloadedEmoji < emojiPackage.emojiUrls.size()) {
-                    //还没下载完, 继续下载下一个表情图片
+                    //还没下载完, 产生一个进度回调
+                    try {
+                        if (listener != null) {
+                            listener.emojiDownloadProgress(emojiPackage, url);
+                        }
+                    }
+                    catch (Throwable e) {
+                        e.printStackTrace();
+                    }
+                    //继续下载下一个表情图片
                     String nextUrl = emojiPackage.emojiUrls.get(downloadContext.downloadedEmoji);
                     downloader.startDownload(nextUrl,
                             getLocalPathForEmoji(emojiPackage, downloadContext.downloadedEmoji));
@@ -56,12 +65,34 @@ public class MyEmojiDownloader implements EmojiDownloader {
                 else {
                     //已经下载完
                     installEmojiPackageLocally(emojiPackage, downloadContext.localPathList);
+
+                    //成功回调
+                    try {
+                        if (listener != null) {
+                            listener.emojiDownloadProgress(emojiPackage, url);//最后一次进度回调.
+                            listener.emojiDownloadSuccess(emojiPackage);
+                        }
+                    }
+                    catch (Throwable e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
             @Override
             public void downloadFailed(String url, int errorCode, String errorMessage) {
-                //TODO:
+                EmojiDownloadContext downloadContext = downloader.downloadContext;
+                EmojiPackage emojiPackage = downloadContext.emojiPackage;
+
+                //失败回调
+                try {
+                    if (listener != null) {
+                        listener.emojiDownloadFailed(emojiPackage, errorCode, errorMessage);
+                    }
+                }
+                catch (Throwable e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override

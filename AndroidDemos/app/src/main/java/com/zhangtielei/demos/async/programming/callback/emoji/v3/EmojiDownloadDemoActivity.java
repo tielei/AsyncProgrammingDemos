@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.zhangtielei.demos.async.programming.callback.emoji.v1;
+package com.zhangtielei.demos.async.programming.callback.emoji.v3;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,7 +27,7 @@ import com.zhangtielei.demos.async.programming.common.utils.TextLogUtil;
 import java.util.ArrayList;
 
 /**
- * 通过全局保存一份上下文来实现表情包下载的演示页面.
+ * 通过为每一个异步任务创建一个接口实例的方式来传递上下文的表情包下载演示页面.
  */
 public class EmojiDownloadDemoActivity extends AppCompatActivity {
     private TextView description;
@@ -43,7 +43,7 @@ public class EmojiDownloadDemoActivity extends AppCompatActivity {
         description = (TextView) findViewById(R.id.description);
         logTextView = (TextView) findViewById(R.id.log_display);
 
-        description.setText(R.string.emoji_download_demo1_description);
+        description.setText(R.string.emoji_download_demo3_description);
 
         emojiDownloader = new MyEmojiDownloader();
         emojiDownloader.setEmojiDownloadListener(new EmojiDownloader.EmojiDownloadListener() {
@@ -65,16 +65,20 @@ public class EmojiDownloadDemoActivity extends AppCompatActivity {
 
         //构造要下载的表情包
         EmojiPackage emojiPackage = new EmojiPackage();
-        emojiPackage.emojiId = 1001;
+        emojiPackage.emojiId = 1003;
         emojiPackage.emojiUrls = new ArrayList<String>();
         emojiPackage.emojiUrls.add("http://zhangtielei.com/demourls/1.png");
         emojiPackage.emojiUrls.add("http://zhangtielei.com/demourls/2.png");
         emojiPackage.emojiUrls.add("http://zhangtielei.com/demourls/3.png");
         emojiPackage.emojiUrls.add("http://zhangtielei.com/demourls/4.png");
         emojiPackage.emojiUrls.add("http://zhangtielei.com/demourls/5.png");
+        emojiPackage.emojiUrls.add("http://zhangtielei.com/demourls/6.png");
+        emojiPackage.emojiUrls.add("http://zhangtielei.com/demourls/7.png");
+        emojiPackage.emojiUrls.add("http://zhangtielei.com/demourls/8.png");
 
         TextLogUtil.println(logTextView, "Start downloading emoji package (emojiId: " + emojiPackage.emojiId + ") with " + emojiPackage.emojiUrls.size() + " URLs");
         emojiDownloader.startDownloadEmoji(emojiPackage);
+
     }
 
 }

@@ -17,9 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dc6-3g-L8d">
-                                <rect key="frame" x="232" y="80" width="136" height="30"/>
-                                <state key="normal" title="Network Monitoring"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dc6-3g-L8d">
+                                <rect key="frame" x="173" y="183" width="255" height="30"/>
+                                <state key="normal" title="点击开始网络状态监听异步问题的演示"/>
                                 <connections>
                                     <segue destination="a2s-vf-cVo" kind="show" id="hA5-7l-itc"/>
                                 </connections>
@@ -49,17 +49,89 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is MyViewController" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Aq-h9-tDa">
-                                <rect key="frame" x="206" y="84" width="189" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本页面演示网络状态监听例子中的异步问题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Aq-h9-tDa">
+                                <rect key="frame" x="186" y="84" width="228" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="程序日志输出请连接XCode后查看" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPg-fX-XOn">
+                                <rect key="frame" x="186" y="101" width="182" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="按如下步骤操作会发生崩溃：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSI-23-dto">
+                                <rect key="frame" x="186" y="136" width="156" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（1）到设置中切换网络，然后回到本页面" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rmw-Gd-7pz">
+                                <rect key="frame" x="190" y="156" width="222" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（2）看到日志中出现reconnecting字样时，" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVd-RR-XE6">
+                                <rect key="frame" x="190" y="176" width="238" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（3）等待几秒，看到日志中出现dealloc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsl-cS-gwT">
+                                <rect key="frame" x="190" y="216" width="217" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退出本页面" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6WD-Ra-f2u">
+                                <rect key="frame" x="220" y="196" width="60" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="字样时，到设置中切换网络，然后" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kC6-7I-Z1a">
+                                <rect key="frame" x="220" y="236" width="180" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="回到程序（这时停留在上一个页面）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UdD-QY-dda">
+                                <rect key="frame" x="220" y="256" width="192" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（4）看到程序崩溃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLI-Di-bPW">
+                                <rect key="frame" x="190" y="276" width="104" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="rVd-RR-XE6" firstAttribute="top" secondItem="rmw-Gd-7pz" secondAttribute="bottom" constant="5" id="2TF-N7-9q1"/>
+                            <constraint firstItem="tSI-23-dto" firstAttribute="top" secondItem="nPg-fX-XOn" secondAttribute="bottom" constant="20" id="6Uf-F0-oT0"/>
+                            <constraint firstItem="UdD-QY-dda" firstAttribute="leading" secondItem="kC6-7I-Z1a" secondAttribute="leading" id="9bL-MT-Sab"/>
+                            <constraint firstItem="rmw-Gd-7pz" firstAttribute="top" secondItem="tSI-23-dto" secondAttribute="bottom" constant="5" id="9oy-d0-OH0"/>
+                            <constraint firstItem="UdD-QY-dda" firstAttribute="top" secondItem="kC6-7I-Z1a" secondAttribute="bottom" constant="5" id="C3t-CZ-b40"/>
+                            <constraint firstItem="kC6-7I-Z1a" firstAttribute="top" secondItem="vsl-cS-gwT" secondAttribute="bottom" constant="5" id="Obq-8Z-Mar"/>
+                            <constraint firstItem="kC6-7I-Z1a" firstAttribute="leading" secondItem="vsl-cS-gwT" secondAttribute="leading" constant="30" id="Vg3-Vb-NgE"/>
+                            <constraint firstItem="6WD-Ra-f2u" firstAttribute="leading" secondItem="rVd-RR-XE6" secondAttribute="leading" constant="30" id="Yhp-Q3-AmD"/>
+                            <constraint firstItem="iLI-Di-bPW" firstAttribute="top" secondItem="UdD-QY-dda" secondAttribute="bottom" constant="5" id="Zpf-jv-7TP"/>
+                            <constraint firstItem="nPg-fX-XOn" firstAttribute="top" secondItem="1Aq-h9-tDa" secondAttribute="bottom" constant="2" id="cwS-MB-t8H"/>
                             <constraint firstItem="1Aq-h9-tDa" firstAttribute="centerX" secondItem="r9t-dM-dJL" secondAttribute="centerX" id="iBE-OW-UCU"/>
+                            <constraint firstItem="rVd-RR-XE6" firstAttribute="leading" secondItem="rmw-Gd-7pz" secondAttribute="leading" id="iNg-W0-2eT"/>
+                            <constraint firstItem="vsl-cS-gwT" firstAttribute="top" secondItem="6WD-Ra-f2u" secondAttribute="bottom" constant="5" id="lLU-DL-xPd"/>
+                            <constraint firstItem="nPg-fX-XOn" firstAttribute="leading" secondItem="1Aq-h9-tDa" secondAttribute="leading" id="nxI-iY-JxW"/>
+                            <constraint firstItem="iLI-Di-bPW" firstAttribute="leading" secondItem="UdD-QY-dda" secondAttribute="leading" constant="-30" id="opa-sg-wn7"/>
+                            <constraint firstItem="tSI-23-dto" firstAttribute="leading" secondItem="nPg-fX-XOn" secondAttribute="leading" id="sPZ-eR-fXD"/>
+                            <constraint firstItem="vsl-cS-gwT" firstAttribute="leading" secondItem="6WD-Ra-f2u" secondAttribute="leading" constant="-30" id="shj-fp-wNj"/>
+                            <constraint firstItem="rmw-Gd-7pz" firstAttribute="leading" secondItem="tSI-23-dto" secondAttribute="leading" constant="4" id="uca-av-mQF"/>
                             <constraint firstItem="1Aq-h9-tDa" firstAttribute="top" secondItem="fbC-Wg-enD" secondAttribute="bottom" constant="20" id="vQR-Hn-dIK"/>
+                            <constraint firstItem="6WD-Ra-f2u" firstAttribute="top" secondItem="rVd-RR-XE6" secondAttribute="bottom" constant="5" id="zxM-T2-hoL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="u5R-zM-k74"/>

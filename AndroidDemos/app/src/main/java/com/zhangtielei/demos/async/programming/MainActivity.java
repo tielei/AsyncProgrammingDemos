@@ -24,7 +24,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import com.zhangtielei.demos.async.programming.introduction.servicebinding.ServiceBindingDemoListActivity;
+import com.zhangtielei.demos.async.programming.introduction.servicebinding.ServiceBindingDemoActivity;
 
 /**
  * 演示程序的入口页面.
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        Intent intent = new Intent(MainActivity.this, ServiceBindingDemoListActivity.class);
+                        Intent intent = new Intent(MainActivity.this, ServiceBindingDemoActivity.class);
                         startActivity(intent);
                         break;
                     case 1:

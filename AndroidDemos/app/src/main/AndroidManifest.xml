@@ -29,12 +29,8 @@
             android:label="@string/title_activity_multi_requests_demo" >
         </activity>
         <activity
-            android:name=".introduction.servicebinding.v1.ServiceBindingDemoActivity"
+            android:name=".introduction.servicebinding.ServiceBindingDemoActivity"
             android:label="@string/title_activity_service_binding_demo" >
-        </activity>
-        <activity
-            android:name=".introduction.servicebinding.ServiceBindingDemoListActivity"
-            android:label="@string/title_activity_service_binding_demo_list" >
         </activity>
 
         <service

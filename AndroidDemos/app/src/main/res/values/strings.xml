@@ -25,10 +25,7 @@
     <string name="blog_title_6">（六）关于封屏与不封屏(未完成)</string>
     <string name="blog_title_7">（七）Android Service实例分析(未完成)</string>
 
-    <string name="example_service_binding_v1">普通的Service绑定和解绑的例子</string>
-    <string name="example_service_binding_v2">考虑了Service绑定和解绑过程中异步处理的例子</string>
-
-    <string name="service_binding_v1_description">本页面用于演示在绑定和解绑一个Service的过程中可能碰到的异步问题。当你刚刚打开这个页面的时候，如果立即退到后台，便有一定概率出现绑定和解绑顺序错乱的问题。最终造成结果就是：虽然退到了后台，但Activity和Service却仍然互相引用着。</string>
+    <string name="service_binding_description">本页面用于演示绑定和解绑一个Service的异步过程。</string>
     <string name="multirequest_rxjava_demo_description">本页面用于演示如何使用RxJava的merge操作来处理并发的两个请求</string>
 
 
@@ -37,5 +34,4 @@
     <string name="title_activity_multi_requests_demo">MultiRequestsDemoActivity</string>
     <string name="title_activity_page_caching_demo">PageCachingDemoActivity</string>
     <string name="title_activity_service_binding_demo">ServiceBindingDemoActivity</string>
-    <string name="title_activity_service_binding_demo_list">ServiceBindingDemoListActivity</string>
 </resources>

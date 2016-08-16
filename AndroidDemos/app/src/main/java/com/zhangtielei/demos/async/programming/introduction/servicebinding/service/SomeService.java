@@ -20,13 +20,10 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
-import android.support.graphics.drawable.BuildConfig;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 /**
  * 一个Service例子, 用于演示Service Binding中存在的异步问题.
@@ -48,18 +45,6 @@ public class SomeService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         // Return the communication channel to the service.
-        /**
-         * 这里用一个延迟来模拟绑定过程的快慢.
-         */
-        long delay = 3000;//random.nextInt(5000);
-        if (BuildConfig.DEBUG) {
-            Log.d(TAG, "onBind called. Will delay: " + delay + " ms");
-        }
-        try {
-            TimeUnit.MILLISECONDS.sleep(delay);
-        } catch (InterruptedException e) {
-            Log.e(TAG, "", e);
-        }
         return binder;
     }
 

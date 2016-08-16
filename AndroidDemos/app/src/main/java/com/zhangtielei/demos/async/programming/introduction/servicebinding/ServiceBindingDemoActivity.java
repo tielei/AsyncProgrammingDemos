@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.zhangtielei.demos.async.programming.introduction.servicebinding.v1;
+package com.zhangtielei.demos.async.programming.introduction.servicebinding;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -36,6 +36,10 @@ public class ServiceBindingDemoActivity extends AppCompatActivity implements Som
      * 对于Service的引用
      */
     private SomeService someService;
+    /**
+     * 指示本Activity是否处于running状态：执行过onResume就变为running状态。
+     */
+    private boolean running;
 
     private TextView description;
     private TextView logTextView;
@@ -54,12 +58,14 @@ public class ServiceBindingDemoActivity extends AppCompatActivity implements Som
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            //建立Activity与Service的引用和监听关系
-            //...
-            SomeService.ServiceBinder binder = (SomeService.ServiceBinder) service;
-            someService = binder.getService();
-            someService.addListener(ServiceBindingDemoActivity.this);
-            TextLogUtil.println(logTextView, "bound to SomeService...");
+            if (running) {
+                //建立Activity与Service的引用和监听关系
+                //...
+                SomeService.ServiceBinder binder = (SomeService.ServiceBinder) service;
+                someService = binder.getService();
+                someService.addListener(ServiceBindingDemoActivity.this);
+                TextLogUtil.println(logTextView, "bound to SomeService...");
+            }
         }
     };
 
@@ -71,13 +77,14 @@ public class ServiceBindingDemoActivity extends AppCompatActivity implements Som
         description = (TextView) findViewById(R.id.description);
         logTextView = (TextView) findViewById(R.id.log_display);
 
-        description.setText(R.string.service_binding_v1_description);
+        description.setText(R.string.service_binding_description);
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        running = true;
 
         Intent intent = new Intent(this, SomeService.class);
         bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
@@ -87,6 +94,7 @@ public class ServiceBindingDemoActivity extends AppCompatActivity implements Som
     @Override
     public void onPause() {
         super.onPause();
+        running = false;
 
         //解除Activity与Service的引用和监听关系
         //...

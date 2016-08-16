@@ -47,12 +47,12 @@ public class ImageLoaderDemoActivity extends AppCompatActivity {
         imageLoader.setListener(new ImageLoaderListener() {
             @Override
             public void imageLoadSuccess(String url, Bitmap bitmap, Object contextData) {
-                TextLogUtil.println(logTextView, "Downloaded image(" + bitmap + ") from: " + url + ", with context data: " + contextData);
+                TextLogUtil.println(logTextView, "Loaded image(" + bitmap + ") from: " + url + ", with context data: " + contextData);
             }
 
             @Override
             public void imageLoadFailed(String url, int errorCode, String errorMessage, Object contextData) {
-                TextLogUtil.println(logTextView, "Download image failed from: " + url + ", with context data: " + contextData + ", errorCode: " + errorCode + ", errorMessage: " + errorMessage);
+                TextLogUtil.println(logTextView, "Load image failed from: " + url + ", with context data: " + contextData + ", errorCode: " + errorCode + ", errorMessage: " + errorMessage);
             }
         });
 

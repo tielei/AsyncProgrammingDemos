@@ -21,6 +21,8 @@ import android.os.Looper;
 import com.zhangtielei.demos.async.programming.multitask.http.HttpListener;
 import com.zhangtielei.demos.async.programming.multitask.http.HttpResult;
 import com.zhangtielei.demos.async.programming.multitask.http.HttpService;
+import com.zhangtielei.demos.async.programming.multitask.pagecaching.model.HttpRequest;
+import com.zhangtielei.demos.async.programming.multitask.pagecaching.model.HttpResponse;
 import com.zhangtielei.demos.async.programming.multitask.simultaneousrequests.model.HttpRequest1;
 import com.zhangtielei.demos.async.programming.multitask.simultaneousrequests.model.HttpRequest2;
 import com.zhangtielei.demos.async.programming.multitask.simultaneousrequests.model.HttpResponse1;
@@ -89,6 +91,10 @@ public class MockHttpService implements HttpService {
             HttpResponse2 response2 = new HttpResponse2();
             response2.setText("Data from HttpRequest2. timestamp: " + new Date());
             return response2;
+        }
+        else if (httpRequest instanceof HttpRequest) {
+            HttpResponse response = new HttpResponse();
+            return response;
         }
         return null;
     }

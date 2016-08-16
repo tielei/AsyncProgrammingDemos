@@ -36,14 +36,14 @@ import java.util.Map;
  * 演示两个请求同时发生的异步处理过程.
  */
 public class MultiRequestsDemoActivity extends AppCompatActivity {
+    private TextView description;
+    private TextView logTextView;
+
     private HttpService httpService = new MockHttpService();
     /**
      * 缓存各个请求结果的Map
      */
     private Map<String, Object> httpResults = new HashMap<String, Object>();
-
-    private TextView description;
-    private TextView logTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

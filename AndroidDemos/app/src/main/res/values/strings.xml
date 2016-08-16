@@ -41,13 +41,11 @@
     <string name="emoji_download_demo3_description">本页面通过实现一个表情包下载器，来演示为每一个异步任务创建一个接口实例来传递上下文的技术</string>
     <string name="emoji_download_demo4_description">本页面通过实现一个表情包下载器，来演示利用一个支持上下文传递的异步接口的上下文传递方式(推荐方式)</string>
     <string name="imageloader_demo_description">本页面通过调用一个带有多级缓存的图片下载器，来演示"多个异步任务先后接续执行"的多任务协作关系</string>
-    <string name="multireques_demo_description">本页面通过同时发起多个网络请求的例子，来演示"多个异步任务并发执行，全部完成"的多任务协作关系</string>
-    <string name="pagecaching_demo_description">本页面通过一个页面缓存的例子，来演示"多个异步任务并发执行，优先完成"的多任务协作关系</string>
-    <string name="multirequest_rxjava_demo_description">本页面用于演示如何使用RxJava的merge操作来处理并发的两个请求</string>
+    <string name="multireques_demo_description">本页面通过同时发起多个网络请求的例子，来演示"多个异步任务并发执行，全部完成"的多任务协作关系(注意: 本实例多次执行会产生不同的执行时序)</string>
+    <string name="pagecaching_demo_description">本页面通过一个页面缓存的例子，来演示"多个异步任务并发执行，优先完成"的多任务协作关系(注意: 本实例多次执行会产生不同的执行时序)</string>
+    <string name="multirequest_rxjava_demo_description">本页面用于演示如何使用RxJava的merge操作来处理并发的两个请求(注意: 本实例多次执行会产生不同的执行时序)</string>
 
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
     <string name="title_activity_multi_requests_demo">MultiRequestsDemoActivity</string>
     <string name="title_activity_page_caching_demo">PageCachingDemoActivity</string>
     <string name="title_activity_service_binding_demo">ServiceBindingDemoActivity</string>

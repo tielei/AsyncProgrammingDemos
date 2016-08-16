@@ -27,6 +27,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import com.zhangtielei.demos.async.programming.R;
 import com.zhangtielei.demos.async.programming.multitask.multilevelcaching.ImageLoaderDemoActivity;
+import com.zhangtielei.demos.async.programming.multitask.pagecaching.PageCachingDemoActivity;
 
 /**
  * 多个任务同时执行的演示程序入口列表页面.
@@ -66,7 +67,7 @@ public class MultiTaskDemoListActivity extends AppCompatActivity {
                     }
                     case 2:
                     {
-                        Intent intent = new Intent(MultiTaskDemoListActivity.this, com.zhangtielei.demos.async.programming.callback.emoji.v3.EmojiDownloadDemoActivity.class);
+                        Intent intent = new Intent(MultiTaskDemoListActivity.this, PageCachingDemoActivity.class);
                         startActivity(intent);
                         break;
                     }

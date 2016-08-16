@@ -16,17 +16,56 @@
 
 package com.zhangtielei.demos.async.programming.multitask.pagecaching.localcache.mock;
 
+import android.os.Handler;
+import android.os.Looper;
 import com.zhangtielei.demos.async.programming.common.AsyncCallback;
 import com.zhangtielei.demos.async.programming.multitask.pagecaching.localcache.LocalDataCache;
 import com.zhangtielei.demos.async.programming.multitask.pagecaching.model.HttpResponse;
 
+import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by Tielei Zhang on 16/5/17.
+ * 本地页面Cache的一个假的实现.
  */
 public class MockLocalDataCache implements LocalDataCache {
+    private ExecutorService executorService = Executors.newCachedThreadPool();
+    private Handler mainHandler = new Handler(Looper.getMainLooper());
+    private Random rand = new Random();
+
     @Override
-    public void getCachingData(String key, AsyncCallback<HttpResponse> callback) {
-        //TODO:
+    public void getCachingData(String key, final AsyncCallback<HttpResponse> callback) {
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                //模拟请求执行, 随机执行0~1秒
+                try {
+                    TimeUnit.MILLISECONDS.sleep(rand.nextInt(1000));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                //回调
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (callback != null) {
+                            try {
+                                //模拟命中还是不命中的两种情况: 以80%概率命中
+                                HttpResponse httpResponse = (rand.nextInt(10) <= 7) ? new HttpResponse() : null;
+                                callback.onResult(httpResponse);
+                            }
+                            catch (Throwable e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
+            }
+        });
     }
 
     @Override

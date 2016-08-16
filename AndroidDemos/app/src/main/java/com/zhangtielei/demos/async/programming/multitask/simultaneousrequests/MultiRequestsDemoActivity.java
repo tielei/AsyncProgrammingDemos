@@ -17,9 +17,9 @@ package com.zhangtielei.demos.async.programming.multitask.simultaneousrequests;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.TextView;
 import com.zhangtielei.demos.async.programming.R;
+import com.zhangtielei.demos.async.programming.common.utils.TextLogUtil;
 import com.zhangtielei.demos.async.programming.multitask.http.HttpListener;
 import com.zhangtielei.demos.async.programming.multitask.http.HttpResult;
 import com.zhangtielei.demos.async.programming.multitask.http.HttpService;
@@ -42,12 +42,21 @@ public class MultiRequestsDemoActivity extends AppCompatActivity {
      */
     private Map<String, Object> httpResults = new HashMap<String, Object>();
 
+    private TextView description;
+    private TextView logTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_display);
 
+        description = (TextView) findViewById(R.id.description);
+        logTextView = (TextView) findViewById(R.id.log_display);
+
+        description.setText(R.string.multireques_demo_description);
+
         //同时发起两个异步请求
+        TextLogUtil.println(logTextView, "Start HttpRequest1...");
         httpService.doRequest("http://...", new HttpRequest1(),
                 new HttpListener<HttpRequest1, HttpResponse1>() {
                     @Override
@@ -55,6 +64,7 @@ public class MultiRequestsDemoActivity extends AppCompatActivity {
                                          HttpRequest1 request,
                                          HttpResult<HttpResponse1> result,
                                          Object contextData) {
+                        TextLogUtil.println(logTextView, "Rx HttpResponse1. Success? " + (result.getErrorCode() == HttpResult.SUCCESS));
                         //将请求结果缓存下来
                         httpResults.put("request-1", result);
                         if (checkAllHttpResultsReady()) {
@@ -73,6 +83,7 @@ public class MultiRequestsDemoActivity extends AppCompatActivity {
                     }
                 },
                 null);
+        TextLogUtil.println(logTextView, "Start HttpRequest2...");
         httpService.doRequest("http://...", new HttpRequest2(),
                 new HttpListener<HttpRequest2, HttpResponse2>() {
                     @Override
@@ -80,6 +91,7 @@ public class MultiRequestsDemoActivity extends AppCompatActivity {
                                          HttpRequest2 request,
                                          HttpResult<HttpResponse2> result,
                                          Object contextData) {
+                        TextLogUtil.println(logTextView, "Rx HttpResponse2. Success? " + (result.getErrorCode() == HttpResult.SUCCESS));
                         //将请求结果缓存下来
                         httpResults.put("request-2", result);
                         if (checkAllHttpResultsReady()) {
@@ -130,32 +142,10 @@ public class MultiRequestsDemoActivity extends AppCompatActivity {
     }
 
     private void processData(HttpResponse1 data1, HttpResponse2 data2) {
-        //TODO: 更新UI, 展示请求结果. 省略此处代码
+        TextLogUtil.println(logTextView, "Both data ready. HttpResponse1: " + data1.getText() + ", HttpResponse2: " + data2.getText());
     }
 
     private void processError(int errorCode1, int errorCode2) {
-        //TODO: 更新UI,展示错误. 省略此处代码
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_multi_requests_demo, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        TextLogUtil.println(logTextView, "Requests failed! errorCode1: " + errorCode1 + ", errorCode2: " + errorCode2);
     }
 }

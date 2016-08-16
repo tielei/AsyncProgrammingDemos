@@ -18,8 +18,6 @@ package com.zhangtielei.demos.async.programming.multitask.simultaneousrequests.r
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 import com.zhangtielei.demos.async.programming.R;
 import com.zhangtielei.demos.async.programming.common.utils.TextLogUtil;
@@ -75,6 +73,7 @@ public class MultiRequestsDemoActivity extends AppCompatActivity {
                                 new HttpListener<HttpRequest1, HttpResponse1>() {
                                     @Override
                                     public void onResult(String apiUrl, HttpRequest1 request, HttpResult<HttpResponse1> result, Object contextData) {
+                                        TextLogUtil.println(logTextView, "Rx HttpResponse1. Success? " + (result.getErrorCode() == HttpResult.SUCCESS));
                                         //第一个异步请求结束, 向asyncObservable中发送结果
                                         if (result.getErrorCode() == HttpResult.SUCCESS) {
                                             subscriber.onNext(result.getResponse());
@@ -110,6 +109,7 @@ public class MultiRequestsDemoActivity extends AppCompatActivity {
                                 new HttpListener<HttpRequest2, HttpResponse2>() {
                                     @Override
                                     public void onResult(String apiUrl, HttpRequest2 request, HttpResult<HttpResponse2> result, Object contextData) {
+                                        TextLogUtil.println(logTextView, "Rx HttpResponse2. Success? " + (result.getErrorCode() == HttpResult.SUCCESS));
                                         //第一个异步请求结束, 向asyncObservable中发送结果
                                         if (result.getErrorCode() == HttpResult.SUCCESS) {
                                             subscriber.onNext(result.getResponse());
@@ -161,34 +161,11 @@ public class MultiRequestsDemoActivity extends AppCompatActivity {
 
     private void processData(HttpResponse1 data1, HttpResponse2 data2) {
         //更新UI, 展示请求结果.
-        TextLogUtil.println(logTextView, data1.getText());
-        TextLogUtil.println(logTextView, data2.getText());
+        TextLogUtil.println(logTextView, "Both data ready. HttpResponse1: " + data1.getText() + ", HttpResponse2: " + data2.getText());
     }
 
     private void processError(Throwable e) {
         //更新UI,展示错误.
-        TextLogUtil.println(logTextView, "request failed: " + e.getMessage());
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_multi_requests_demo, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        TextLogUtil.println(logTextView, "Requests failed! errorMessage: " + e.getMessage());
     }
 }

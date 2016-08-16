@@ -60,7 +60,7 @@ public class MultiTaskDemoListActivity extends AppCompatActivity {
                     }
                     case 1:
                     {
-                        Intent intent = new Intent(MultiTaskDemoListActivity.this, com.zhangtielei.demos.async.programming.callback.emoji.v2.EmojiDownloadDemoActivity.class);
+                        Intent intent = new Intent(MultiTaskDemoListActivity.this, com.zhangtielei.demos.async.programming.multitask.simultaneousrequests.MultiRequestsDemoActivity.class);
                         startActivity(intent);
                         break;
                     }
@@ -72,7 +72,7 @@ public class MultiTaskDemoListActivity extends AppCompatActivity {
                     }
                     case 3:
                     {
-                        Intent intent = new Intent(MultiTaskDemoListActivity.this, com.zhangtielei.demos.async.programming.callback.emoji.v4.EmojiDownloadDemoActivity.class);
+                        Intent intent = new Intent(MultiTaskDemoListActivity.this, com.zhangtielei.demos.async.programming.multitask.simultaneousrequests.rxjavasolution.MultiRequestsDemoActivity.class);
                         startActivity(intent);
                         break;
                     }

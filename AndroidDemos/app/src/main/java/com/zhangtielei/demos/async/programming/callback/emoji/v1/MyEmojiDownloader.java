@@ -69,7 +69,7 @@ public class MyEmojiDownloader implements EmojiDownloader, DownloadListener {
             //还没下载完, 产生一个进度回调
             try {
                 if (listener != null) {
-                    listener.emojiDownloadProgress(downloadContext.emojiPackage, url);
+                    listener.emojiDownloadProgress(emojiPackage, url);
                 }
             }
             catch (Throwable e) {
@@ -84,27 +84,31 @@ public class MyEmojiDownloader implements EmojiDownloader, DownloadListener {
             //已经下载完
             installEmojiPackageLocally(emojiPackage, downloadContext.localPathList);
 
+            downloadContext = null;//这个状态清理操作应该在回调之前
+
             //成功回调
             try {
                 if (listener != null) {
-                    listener.emojiDownloadProgress(downloadContext.emojiPackage, url);//最后一次进度回调.
-                    listener.emojiDownloadSuccess(downloadContext.emojiPackage);
+                    listener.emojiDownloadProgress(emojiPackage, url);//最后一次进度回调.
+                    listener.emojiDownloadSuccess(emojiPackage);
                 }
             }
             catch (Throwable e) {
                 e.printStackTrace();
             }
-
-            downloadContext = null;
         }
     }
 
     @Override
     public void downloadFailed(String url, int errorCode, String errorMessage) {
+        EmojiPackage emojiPackage = downloadContext.emojiPackage;
+
+        downloadContext = null;//这个状态清理操作应该在回调之前
+
         //失败回调
         try {
             if (listener != null) {
-                listener.emojiDownloadFailed(downloadContext.emojiPackage, errorCode, errorMessage);
+                listener.emojiDownloadFailed(emojiPackage, errorCode, errorMessage);
             }
         }
         catch (Throwable e) {

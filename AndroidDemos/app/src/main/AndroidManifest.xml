@@ -47,6 +47,10 @@
             android:name=".callback.emoji.v1.EmojiDownloadDemoActivity"
             android:label="@string/title_activity_emoji_download_demo" >
         </activity>
+        <activity
+            android:name=".callback.emoji.v2.EmojiDownloadDemoActivity"
+            android:label="@string/title_activity_emoji_download_demo" >
+        </activity>
     </application>
 
 </manifest>

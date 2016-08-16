@@ -1,5 +1,7 @@
 # AsyncProgrammingDemos
-Demo code for Tielei's Blog about async programming in iOS &amp; Android
+Demo code for Tielei's Blog about async programming in Android &amp; iOS.
+
+[《Android和iOS开发中的异步处理》](http://zhangtielei.com/posts/blog-series-async-task-1.html)
 
 License
 =======

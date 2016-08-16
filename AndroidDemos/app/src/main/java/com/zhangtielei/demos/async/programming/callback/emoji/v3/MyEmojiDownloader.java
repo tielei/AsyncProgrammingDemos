@@ -28,6 +28,8 @@ import java.util.List;
  * EmojiDownloader的第3个版本的实现: 为每一个异步任务创建一个接口实例.
  */
 public class MyEmojiDownloader implements EmojiDownloader {
+    private EmojiDownloadListener listener;
+
     @Override
     public void startDownloadEmoji(EmojiPackage emojiPackage) {
         //创建下载上下文数据
@@ -71,6 +73,11 @@ public class MyEmojiDownloader implements EmojiDownloader {
         //启动第0个表情图片文件的下载
         downloader.startDownload(emojiPackage.emojiUrls.get(0),
                 getLocalPathForEmoji(emojiPackage, 0));
+    }
+
+    @Override
+    public void setEmojiDownloadListener(EmojiDownloadListener listener) {
+        this.listener = listener;
     }
 
     private static class EmojiUrlDownloader extends MyDownloader {

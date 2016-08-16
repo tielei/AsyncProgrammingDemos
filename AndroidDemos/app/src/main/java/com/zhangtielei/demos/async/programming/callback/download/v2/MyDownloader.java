@@ -15,18 +15,57 @@
  */
 package com.zhangtielei.demos.async.programming.callback.download.v2;
 
+import android.os.Handler;
+import android.os.Looper;
+
+import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by Tielei Zhang on 16/5/1.
  * 下载器的实现(stub).
  */
 public class MyDownloader implements Downloader {
+    private DownloadListener listener;
+
+    private ExecutorService executorService = Executors.newCachedThreadPool();
+    private Handler mainHandler = new Handler(Looper.getMainLooper());
+    private Random rand = new Random();
+
     @Override
     public void setListener(DownloadListener listener) {
-        //TODO:
+        this.listener = listener;
     }
 
     @Override
-    public void startDownload(String url, String localPath) {
-        //TODO:
+    public void startDownload(final String url, final String localPath) {
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                //模拟请求执行, 随机执行0~3秒
+                try {
+                    TimeUnit.MILLISECONDS.sleep(rand.nextInt(3000));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                //模拟一个下载成功回调
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            if (listener != null) {
+                                listener.downloadSuccess(url, localPath);
+                            }
+                        }
+                        catch (Throwable e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
     }
 }

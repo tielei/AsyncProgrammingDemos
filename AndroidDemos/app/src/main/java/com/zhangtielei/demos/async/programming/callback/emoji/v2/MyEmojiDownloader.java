@@ -36,7 +36,9 @@ public class MyEmojiDownloader implements EmojiDownloader, DownloadListener {
      * URL -> EmojiDownloadContext
      */
     private Map<String, EmojiDownloadContext> downloadContextMap;
+
     private Downloader downloader;
+    private EmojiDownloadListener listener;
 
     public MyEmojiDownloader() {
         downloadContextMap = new HashMap<String, EmojiDownloadContext>();
@@ -57,6 +59,11 @@ public class MyEmojiDownloader implements EmojiDownloader, DownloadListener {
         //启动第0个表情图片文件的下载
         downloader.startDownload(emojiPackage.emojiUrls.get(0),
                 getLocalPathForEmoji(emojiPackage, 0));
+    }
+
+    @Override
+    public void setEmojiDownloadListener(EmojiDownloadListener listener) {
+        this.listener = listener;
     }
 
     @Override

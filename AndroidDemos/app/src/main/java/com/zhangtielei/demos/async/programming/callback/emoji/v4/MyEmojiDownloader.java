@@ -31,6 +31,7 @@ import java.util.List;
  */
 public class MyEmojiDownloader implements EmojiDownloader, DownloadListener {
     private Downloader downloader;
+    private EmojiDownloadListener listener;
 
     public MyEmojiDownloader() {
         //实例化有一个下载器.
@@ -48,6 +49,11 @@ public class MyEmojiDownloader implements EmojiDownloader, DownloadListener {
                 getLocalPathForEmoji(emojiPackage, 0),
                 downloadContext);
 
+    }
+
+    @Override
+    public void setEmojiDownloadListener(EmojiDownloadListener listener) {
+        this.listener = listener;
     }
 
     @Override

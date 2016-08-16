@@ -27,7 +27,37 @@ public interface EmojiDownloader {
     void startDownloadEmoji(EmojiPackage emojiPackage);
 
     /**
-     * 这里回调相关的接口, 忽略. 不是我们要讨论的重点.
+     * 设置监听器.
+     * @param listener
      */
-    //TODO: 回调接口相关定义
+    void setEmojiDownloadListener(EmojiDownloadListener listener);
+
+    /**
+     * 这里定义回调相关的接口. 不是我们要讨论的重点.
+     * 这里的定义用于完整演示.
+     */
+
+    interface EmojiDownloadListener {
+        /**
+         * 表情包下载成功回调.
+         * @param emojiPackage
+         */
+        void emojiDownloadSuccess(EmojiPackage emojiPackage);
+
+        /**
+         * 表情包下载失败回调.
+         * @param emojiPackage
+         * @param errorCode 为简单起见, 这里的值复用{@link com.zhangtielei.demos.async.programming.callback.download.v3.DownloadListener}中的错误码定义.
+         * @param errorMessage
+         */
+        void emojiDownloadFailed(EmojiPackage emojiPackage, int errorCode, String errorMessage);
+
+        /**
+         * 表情包下载进度回调. 每次下载完一个图片文件后回调一次.
+         * @param emojiPackage
+         * @param downloadEmojiUrl 当前刚下载完的图片文件URL
+         */
+        void emojiDownloadProgress(EmojiPackage emojiPackage, String downloadEmojiUrl);
+    }
+
 }

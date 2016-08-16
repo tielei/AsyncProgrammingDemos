@@ -33,7 +33,9 @@ public class MyEmojiDownloader implements EmojiDownloader, DownloadListener {
      * 全局保存一份的表情包下载上下文.
      */
     private EmojiDownloadContext downloadContext;
+
     private Downloader downloader;
+    private EmojiDownloadListener listener;
 
     public MyEmojiDownloader() {
         //实例化有一个下载器.
@@ -54,12 +56,26 @@ public class MyEmojiDownloader implements EmojiDownloader, DownloadListener {
     }
 
     @Override
+    public void setEmojiDownloadListener(EmojiDownloadListener listener) {
+        this.listener = listener;
+    }
+
+    @Override
     public void downloadSuccess(String url, String localPath) {
         downloadContext.localPathList.add(localPath);
         downloadContext.downloadedEmoji++;
         EmojiPackage emojiPackage = downloadContext.emojiPackage;
         if (downloadContext.downloadedEmoji < emojiPackage.emojiUrls.size()) {
-            //还没下载完, 继续下载下一个表情图片
+            //还没下载完, 产生一个进度回调
+            try {
+                if (listener != null) {
+                    listener.emojiDownloadProgress(downloadContext.emojiPackage, url);
+                }
+            }
+            catch (Throwable e) {
+                e.printStackTrace();
+            }
+            //继续下载下一个表情图片
             String nextUrl = emojiPackage.emojiUrls.get(downloadContext.downloadedEmoji);
             downloader.startDownload(nextUrl,
                     getLocalPathForEmoji(emojiPackage, downloadContext.downloadedEmoji));
@@ -67,13 +83,33 @@ public class MyEmojiDownloader implements EmojiDownloader, DownloadListener {
         else {
             //已经下载完
             installEmojiPackageLocally(emojiPackage, downloadContext.localPathList);
+
+            //成功回调
+            try {
+                if (listener != null) {
+                    listener.emojiDownloadProgress(downloadContext.emojiPackage, url);//最后一次进度回调.
+                    listener.emojiDownloadSuccess(downloadContext.emojiPackage);
+                }
+            }
+            catch (Throwable e) {
+                e.printStackTrace();
+            }
+
             downloadContext = null;
         }
     }
 
     @Override
     public void downloadFailed(String url, int errorCode, String errorMessage) {
-        //TODO:
+        //失败回调
+        try {
+            if (listener != null) {
+                listener.emojiDownloadFailed(downloadContext.emojiPackage, errorCode, errorMessage);
+            }
+        }
+        catch (Throwable e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

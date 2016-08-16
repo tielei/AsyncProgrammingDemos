@@ -38,6 +38,15 @@
             android:enabled="true"
             android:exported="false" >
         </service>
+
+        <activity
+            android:name=".callback.emoji.EmojiDownloadDemoListActivity"
+            android:label="@string/title_activity_emoji_download_demo_list" >
+        </activity>
+        <activity
+            android:name=".callback.emoji.v1.EmojiDownloadDemoActivity"
+            android:label="@string/title_activity_emoji_download_demo" >
+        </activity>
     </application>
 
 </manifest>

@@ -17,16 +17,53 @@
 package com.zhangtielei.demos.async.programming.multitask.multilevelcaching.diskcache.mock;
 
 import android.graphics.Bitmap;
+import android.os.Handler;
+import android.os.Looper;
 import com.zhangtielei.demos.async.programming.common.AsyncCallback;
 import com.zhangtielei.demos.async.programming.multitask.multilevelcaching.diskcache.ImageDiskCache;
+
+import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Tielei Zhang on 16/5/17.
  */
 public class MockImageDiskCache implements ImageDiskCache {
+    private ExecutorService executorService = Executors.newCachedThreadPool();
+    private Handler mainHandler = new Handler(Looper.getMainLooper());
+    private Random rand = new Random();
+
     @Override
-    public void getImage(String key, AsyncCallback<Bitmap> callback) {
-        //TODO:
+    public void getImage(String key, final AsyncCallback<Bitmap> callback) {
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                //模拟请求执行, 随机执行0~1秒
+                try {
+                    TimeUnit.MILLISECONDS.sleep(rand.nextInt(1000));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                //模拟一个下载成功回调
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            if (callback != null) {
+                                //TODO: 这里写死返回null, 模拟Disk缓存没有命中的情形
+                                callback.onResult(null);
+                            }
+                        }
+                        catch (Throwable e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
     }
 
     @Override

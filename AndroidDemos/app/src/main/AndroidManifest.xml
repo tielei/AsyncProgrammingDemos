@@ -59,6 +59,14 @@
             android:name=".callback.emoji.v4.EmojiDownloadDemoActivity"
             android:label="@string/title_activity_emoji_download_demo" >
         </activity>
+        <activity
+            android:name=".multitask.MultiTaskDemoListActivity"
+            android:label="@string/title_activity_multi_task_demo_list" >
+        </activity>
+        <activity
+            android:name=".multitask.multilevelcaching.ImageLoaderDemoActivity"
+            android:label="@string/title_activity_image_loader_demo" >
+        </activity>
     </application>
 
 </manifest>

@@ -31,6 +31,7 @@ import com.zhangtielei.demos.async.programming.multitask.multilevelcaching.memca
 import com.zhangtielei.demos.async.programming.multitask.multilevelcaching.memcache.mock.MockImageMemCache;
 
 import java.io.File;
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -46,6 +47,8 @@ public class MyDemoImageLoader implements ImageLoader, DownloadListener {
     private Downloader downloader = new MyDownloader();
     private ExecutorService imageDecodingExecutor = Executors.newCachedThreadPool();
     private Handler mainHandler = new Handler(Looper.getMainLooper());
+
+    private Random random = new Random();
 
     public MyDemoImageLoader() {
         downloader.setListener(this);
@@ -184,7 +187,10 @@ public class MyDemoImageLoader implements ImageLoader, DownloadListener {
      * @return 解码失败会返回null; 成功会返回bitmap对象
      */
     private Bitmap decodeBitmap(File file) {
-        //TODO:
+        //模拟: 80%的概率解码成功
+        if (random.nextInt(10) <= 7) {
+            return Bitmap.createBitmap(10, 10, Bitmap.Config.ARGB_8888);
+        }
         return null;
     }
 }

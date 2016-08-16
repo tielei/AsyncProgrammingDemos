@@ -13,7 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.zhangtielei.demos.async.programming;
+
+package com.zhangtielei.demos.async.programming.multitask;
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -24,15 +25,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import com.zhangtielei.demos.async.programming.callback.emoji.EmojiDownloadDemoListActivity;
-import com.zhangtielei.demos.async.programming.introduction.servicebinding.ServiceBindingDemoActivity;
-import com.zhangtielei.demos.async.programming.multitask.MultiTaskDemoListActivity;
+import com.zhangtielei.demos.async.programming.R;
+import com.zhangtielei.demos.async.programming.multitask.multilevelcaching.ImageLoaderDemoActivity;
 
 /**
- * 演示程序的入口页面.
+ * 多个任务同时执行的演示程序入口列表页面.
  */
-public class MainActivity extends AppCompatActivity {
-
+public class MultiTaskDemoListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +41,10 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.item_list);
         Resources resources = getResources();
         String[] textList = new String[] {
-                resources.getString(R.string.blog_title_1),
-                resources.getString(R.string.blog_title_2),
-                resources.getString(R.string.blog_title_3),
-                resources.getString(R.string.blog_title_4),
-                resources.getString(R.string.blog_title_5),
-                resources.getString(R.string.blog_title_6),
-                resources.getString(R.string.blog_title_7),
+                resources.getString(R.string.multitask_demo_1),
+                resources.getString(R.string.multitask_demo_2),
+                resources.getString(R.string.multitask_demo_3),
+                resources.getString(R.string.multitask_demo_4),
         };
         ListAdapter listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, textList);
         listView.setAdapter(listAdapter);
@@ -58,30 +54,28 @@ public class MainActivity extends AppCompatActivity {
                 switch (position) {
                     case 0:
                     {
-                        Intent intent = new Intent(MainActivity.this, ServiceBindingDemoActivity.class);
+                        Intent intent = new Intent(MultiTaskDemoListActivity.this, ImageLoaderDemoActivity.class);
                         startActivity(intent);
                         break;
                     }
                     case 1:
                     {
-                        Intent intent = new Intent(MainActivity.this, EmojiDownloadDemoListActivity.class);
+                        Intent intent = new Intent(MultiTaskDemoListActivity.this, com.zhangtielei.demos.async.programming.callback.emoji.v2.EmojiDownloadDemoActivity.class);
                         startActivity(intent);
                         break;
                     }
                     case 2:
                     {
-                        Intent intent = new Intent(MainActivity.this, MultiTaskDemoListActivity.class);
+                        Intent intent = new Intent(MultiTaskDemoListActivity.this, com.zhangtielei.demos.async.programming.callback.emoji.v3.EmojiDownloadDemoActivity.class);
                         startActivity(intent);
                         break;
                     }
                     case 3:
+                    {
+                        Intent intent = new Intent(MultiTaskDemoListActivity.this, com.zhangtielei.demos.async.programming.callback.emoji.v4.EmojiDownloadDemoActivity.class);
+                        startActivity(intent);
                         break;
-                    case 4:
-                        break;
-                    case 5:
-                        break;
-                    case 6:
-                        break;
+                    }
                     default:
                         break;
                 }

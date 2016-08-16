@@ -30,11 +30,19 @@
     <string name="emoji_download_demo_3">（3）演示采用为每一个异步任务创建一个接口实例的方式来实现表情包下载</string>
     <string name="emoji_download_demo_4">（4）演示利用支持上下文传递的异步接口来实现表情包下载</string>
 
+    <string name="multitask_demo_1">（1）通过一个静态图片多级缓存的例子，演示"多个异步任务先后接续执行"</string>
+    <string name="multitask_demo_2">（2）通过一个同时发起多个网络请求的例子，演示"多个异步任务并发执行，全部完成"</string>
+    <string name="multitask_demo_3">（3）通过一个页面缓存的例子，演示"多个异步任务并发执行，优先完成"</string>
+    <string name="multitask_demo_4">（4）演示使用RxJava merge来实现并发网络请求</string>
+
     <string name="service_binding_description">本页面用于演示绑定和解绑一个Service的异步过程</string>
     <string name="emoji_download_demo1_description">本页面通过实现一个表情包下载器，来演示全局保存一份上下文的技术</string>
     <string name="emoji_download_demo2_description">本页面通过实现一个表情包下载器，来演示用映射关系来保存上下文的技术</string>
     <string name="emoji_download_demo3_description">本页面通过实现一个表情包下载器，来演示为每一个异步任务创建一个接口实例来传递上下文的技术</string>
     <string name="emoji_download_demo4_description">本页面通过实现一个表情包下载器，来演示利用一个支持上下文传递的异步接口的上下文传递方式(推荐方式)</string>
+    <string name="imageloader_demo_description">本页面通过调用一个带有多级缓存的图片下载器，来演示"多个异步任务先后接续执行"的多任务协作关系</string>
+    <string name="multireques_demo_description">本页面通过同时发起多个网络请求的例子，来演示"多个异步任务并发执行，全部完成"的多任务协作关系</string>
+    <string name="pagecaching_demo_description">本页面通过一个页面缓存的例子，来演示"多个异步任务并发执行，优先完成"的多任务协作关系</string>
     <string name="multirequest_rxjava_demo_description">本页面用于演示如何使用RxJava的merge操作来处理并发的两个请求</string>
 
 
@@ -45,4 +53,6 @@
     <string name="title_activity_service_binding_demo">ServiceBindingDemoActivity</string>
     <string name="title_activity_emoji_download_demo_list">EmojiDownloadDemoListActivity</string>
     <string name="title_activity_emoji_download_demo">EmojiDownloadDemoActivity</string>
+    <string name="title_activity_multi_task_demo_list">MultiTaskDemoListActivity</string>
+    <string name="title_activity_image_loader_demo">ImageLoaderDemoActivity</string>
 </resources>

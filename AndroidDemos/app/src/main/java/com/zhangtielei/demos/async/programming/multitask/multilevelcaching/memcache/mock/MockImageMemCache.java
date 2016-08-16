@@ -26,6 +26,7 @@ public class MockImageMemCache implements ImageMemCache {
     @Override
     public Bitmap getImage(String key) {
         //TODO:
+        //返回null表示没有命中
         return null;
     }
 

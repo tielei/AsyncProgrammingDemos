@@ -104,13 +104,13 @@ public class MultiRequestsDemoActivity extends AppCompatActivity {
                 final Observable<HttpResponse2> asyncObservable = Observable.create(new Observable.OnSubscribe<HttpResponse2>() {
                     @Override
                     public void call(final Subscriber<? super HttpResponse2> subscriber) {
-                        //启动第一个异步请求
+                        //启动第二个异步请求
                         httpService.doRequest("http://...", new HttpRequest2(),
                                 new HttpListener<HttpRequest2, HttpResponse2>() {
                                     @Override
                                     public void onResult(String apiUrl, HttpRequest2 request, HttpResult<HttpResponse2> result, Object contextData) {
                                         TextLogUtil.println(logTextView, "Rx HttpResponse2. Success? " + (result.getErrorCode() == HttpResult.SUCCESS));
-                                        //第一个异步请求结束, 向asyncObservable中发送结果
+                                        //第二个异步请求结束, 向asyncObservable中发送结果
                                         if (result.getErrorCode() == HttpResult.SUCCESS) {
                                             subscriber.onNext(result.getResponse());
                                             subscriber.onCompleted();

@@ -67,6 +67,14 @@
             android:name=".multitask.multilevelcaching.ImageLoaderDemoActivity"
             android:label="@string/title_activity_image_loader_demo" >
         </activity>
+        <activity
+            android:name=".queueing.v1.TaskQueueDemoActivity"
+            android:label="@string/title_activity_task_queue_demo" >
+        </activity>
+        <activity
+            android:name=".queueing.QueueingDemoListActivity"
+            android:label="@string/title_activity_queueing_demo_list" >
+        </activity>
     </application>
 
 </manifest>

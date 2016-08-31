@@ -13,7 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.zhangtielei.demos.async.programming;
+
+package com.zhangtielei.demos.async.programming.queueing;
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -24,16 +25,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import com.zhangtielei.demos.async.programming.callback.emoji.EmojiDownloadDemoListActivity;
-import com.zhangtielei.demos.async.programming.introduction.servicebinding.ServiceBindingDemoActivity;
-import com.zhangtielei.demos.async.programming.multitask.MultiTaskDemoListActivity;
-import com.zhangtielei.demos.async.programming.queueing.QueueingDemoListActivity;
+import com.zhangtielei.demos.async.programming.R;
+import com.zhangtielei.demos.async.programming.queueing.v1.TaskQueueDemoActivity;
 
-/**
- * 演示程序的入口页面.
- */
-public class MainActivity extends AppCompatActivity {
-
+public class QueueingDemoListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +38,9 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.item_list);
         Resources resources = getResources();
         String[] textList = new String[] {
-                resources.getString(R.string.blog_title_1),
-                resources.getString(R.string.blog_title_2),
-                resources.getString(R.string.blog_title_3),
-                resources.getString(R.string.blog_title_4),
-                resources.getString(R.string.blog_title_5),
-                resources.getString(R.string.blog_title_6),
-                resources.getString(R.string.blog_title_7),
+                resources.getString(R.string.queueing_demo_1),
+                resources.getString(R.string.queueing_demo_2),
+                resources.getString(R.string.queueing_demo_3),
         };
         ListAdapter listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, textList);
         listView.setAdapter(listAdapter);
@@ -59,39 +50,22 @@ public class MainActivity extends AppCompatActivity {
                 switch (position) {
                     case 0:
                     {
-                        Intent intent = new Intent(MainActivity.this, ServiceBindingDemoActivity.class);
+                        Intent intent = new Intent(QueueingDemoListActivity.this, TaskQueueDemoActivity.class);
                         startActivity(intent);
                         break;
                     }
                     case 1:
                     {
-                        Intent intent = new Intent(MainActivity.this, EmojiDownloadDemoListActivity.class);
-                        startActivity(intent);
                         break;
                     }
                     case 2:
                     {
-                        Intent intent = new Intent(MainActivity.this, MultiTaskDemoListActivity.class);
-                        startActivity(intent);
                         break;
                     }
-                    case 3:
-                    {
-                        Intent intent = new Intent(MainActivity.this, QueueingDemoListActivity.class);
-                        startActivity(intent);
-                        break;
-                    }
-                    case 4:
-                        break;
-                    case 5:
-                        break;
-                    case 6:
-                        break;
                     default:
                         break;
                 }
             }
         });
     }
-
 }

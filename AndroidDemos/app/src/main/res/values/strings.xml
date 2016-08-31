@@ -20,7 +20,7 @@
     <string name="blog_title_1">（一）异步处理概述举例</string>
     <string name="blog_title_2">（二）异步任务的回调</string>
     <string name="blog_title_3">（三）执行多个异步任务</string>
-    <string name="blog_title_4">（四）异步任务和队列(未完成)</string>
+    <string name="blog_title_4">（四）异步任务和队列</string>
     <string name="blog_title_5">（五）异步任务的取消和暂停，以及start ID(未完成)</string>
     <string name="blog_title_6">（六）关于封屏与不封屏(未完成)</string>
     <string name="blog_title_7">（七）Android Service实例分析(未完成)</string>
@@ -35,6 +35,10 @@
     <string name="multitask_demo_3">（3）通过一个页面缓存的例子，演示"多个异步任务并发执行，优先完成"</string>
     <string name="multitask_demo_4">（4）演示使用RxJava merge来实现并发网络请求</string>
 
+    <string name="queueing_demo_1">（1）演示TSQ实现的任务队列</string>
+    <string name="queueing_demo_2">（2）演示通过普通的"异步+Callback"方式实现的任务队列</string>
+    <string name="queueing_demo_3">（2）演示利用RxJava实现的任务队列</string>
+
     <string name="service_binding_description">本页面用于演示绑定和解绑一个Service的异步过程</string>
     <string name="emoji_download_demo1_description">本页面通过实现一个表情包下载器，来演示全局保存一份上下文的技术</string>
     <string name="emoji_download_demo2_description">本页面通过实现一个表情包下载器，来演示用映射关系来保存上下文的技术</string>
@@ -45,6 +49,8 @@
     <string name="pagecaching_demo_description">本页面通过一个页面缓存的例子，来演示"多个异步任务并发执行，优先完成"的多任务协作关系(注意: 本实例多次执行会产生不同的执行时序)</string>
     <string name="multirequest_rxjava_demo_description">本页面用于演示如何使用RxJava的merge操作来处理并发的两个请求(注意: 本实例多次执行会产生不同的执行时序)</string>
 
+    <string name="queueing_demo1_description">本页面演示使用TSQ来实现任务队列(这种方式在客户端编程中很少见)</string>
+
 
     <string name="title_activity_multi_requests_demo">MultiRequestsDemoActivity</string>
     <string name="title_activity_page_caching_demo">PageCachingDemoActivity</string>
@@ -53,4 +59,9 @@
     <string name="title_activity_emoji_download_demo">EmojiDownloadDemoActivity</string>
     <string name="title_activity_multi_task_demo_list">MultiTaskDemoListActivity</string>
     <string name="title_activity_image_loader_demo">ImageLoaderDemoActivity</string>
+    <string name="title_activity_task_queue_demo">TaskQueueDemoActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_queueing_demo_list">QueueingDemoListActivity</string>
 </resources>

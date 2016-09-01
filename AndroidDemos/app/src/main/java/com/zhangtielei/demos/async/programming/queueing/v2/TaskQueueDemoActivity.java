@@ -14,29 +14,23 @@
  * limitations under the License.
  */
 
-package com.zhangtielei.demos.async.programming.queueing.v1;
+package com.zhangtielei.demos.async.programming.queueing.v2;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import com.zhangtielei.demos.async.programming.R;
 import com.zhangtielei.demos.async.programming.common.utils.TextLogUtil;
-
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
+import com.zhangtielei.demos.async.programming.queueing.v2.mock.MockAsyncTask;
 
 /**
- * 演示基于TSQ的任务队列的运行情况.
+ * 演示基于"异步+Callback"的任务队列的运行情况.
  */
 public class TaskQueueDemoActivity extends AppCompatActivity {
     private TextView description;
     private TextView logTextView;
 
     private TaskQueue taskQueue;
-
-    private static long taskIdCounter;
-    private Random rand1 = new Random();
-    private Random rand2 = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +40,9 @@ public class TaskQueueDemoActivity extends AppCompatActivity {
         description = (TextView) findViewById(R.id.description);
         logTextView = (TextView) findViewById(R.id.log_display);
 
-        description.setText(R.string.queueing_demo1_description);
+        description.setText(R.string.queueing_demo2_description);
 
-        taskQueue = new TSQBasedTaskQueue();
+        taskQueue = new CallbackBasedTaskQueue();
         taskQueue.setListener(new TaskQueue.TaskQueueListener() {
             @Override
             public void taskComplete(Task task) {
@@ -65,29 +59,7 @@ public class TaskQueueDemoActivity extends AppCompatActivity {
          * 启动5个任务
          */
         for (int i = 0; i < 5; i++) {
-            Task task = new Task() {
-                private String taskId = String.valueOf(++taskIdCounter);
-
-                @Override
-                public void run() {
-                    //任务随机执行0~3秒
-                    try {
-                        TimeUnit.MILLISECONDS.sleep(rand1.nextInt(3000));
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                    //模拟失败情况: 以80%的概率失败
-                    if (rand2.nextInt(10) < 8) {
-                        throw new RuntimeException("runtime error...");
-                    }
-                }
-
-                @Override
-                public String getTaskId() {
-                    return taskId;
-                }
-            };
+            Task task = new MockAsyncTask();
             TextLogUtil.println(logTextView, "Add task (" + task.getTaskId() + ") to queue");
             taskQueue.addTask(task);
         }

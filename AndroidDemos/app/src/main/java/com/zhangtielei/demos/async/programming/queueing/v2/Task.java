@@ -14,45 +14,52 @@
  * limitations under the License.
  */
 
-package com.zhangtielei.demos.async.programming.queueing.v1;
+package com.zhangtielei.demos.async.programming.queueing.v2;
 
 /**
- * Created by Tielei Zhang on 16/8/31.
- * 任务队列接口.
+ * Created by Tielei Zhang on 16/9/1.
+ *
+ * 供任务队列执行的异步任务接口定义.
+ *
+ * 第二个版本: 不再是异步任务, 变成异步任务.
+ *
  */
-public interface TaskQueue {
+public interface Task {
     /**
-     * 向队列中添加一个任务.
-     * @param task
+     * 唯一标识当前任务的ID
+     * @return
      */
-    void addTask(Task task);
+    String getTaskId();
 
     /**
-     * 设置监听器.
+     * 由于任务是异步任务, 那么start方法被调用只是启动任务;
+     * 任务完成后会回调TaskListener.
+     *
+     * 注: start方法在主线上执行.
+     */
+    void start();
+
+    /**
+     * 设置回调监听.
      * @param listener
      */
-    void setListener(TaskQueueListener listener);
+    void setListener(TaskListener listener);
 
     /**
-     * 销毁队列.
-     * 注: 队列在最后不用的时候, 应该主动销毁它.
+     * 异步任务回调接口.
      */
-    void destroy();
-
-    /**
-     * 任务队列对外监听接口.
-     */
-    interface TaskQueueListener {
+    interface TaskListener {
         /**
-         * 任务完成的回调.
+         * 当前任务完成的回调.
          * @param task
          */
         void taskComplete(Task task);
         /**
-         * 任务最终失败的回调.
+         * 当前任务执行失败的回调.
          * @param task
          * @param cause 失败原因
          */
         void taskFailed(Task task, Throwable cause);
     }
+
 }

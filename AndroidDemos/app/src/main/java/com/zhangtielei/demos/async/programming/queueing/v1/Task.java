@@ -23,14 +23,16 @@ package com.zhangtielei.demos.async.programming.queueing.v1;
  */
 public interface Task {
     /**
-     * 同步执行任务.
-     * 如果执行出错, 可以在处理过程中按异常抛出; 若没抛异常,则认为是执行成功.
-     */
-    void run();
-
-    /**
      * 唯一标识当前任务的ID
      * @return
      */
     String getTaskId();
+
+    /**
+     * 同步执行任务.
+     * 如果执行出错, 可以在处理过程中按异常抛出; 若没抛异常,则认为是执行成功.
+     *
+     * 注: run方法在异步线程上执行.
+     */
+    void run();
 }

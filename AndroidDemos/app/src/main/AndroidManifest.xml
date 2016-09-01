@@ -75,6 +75,10 @@
             android:name=".queueing.QueueingDemoListActivity"
             android:label="@string/title_activity_queueing_demo_list" >
         </activity>
+        <activity
+            android:name=".queueing.v2.TaskQueueDemoActivity"
+            android:label="@string/title_activity_task_queue_demo" >
+        </activity>
     </application>
 
 </manifest>

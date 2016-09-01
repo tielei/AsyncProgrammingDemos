@@ -27,7 +27,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Created by Tielei Zhang on 16/8/31.
  *
- * 基于TSQ (Thread-Safe Queue)
+ * 基于TSQ (Thread-Safe Queue)的队列实现
  */
 public class TSQBasedTaskQueue implements TaskQueue {
     private static final String TAG = "TaskQueue";

@@ -62,6 +62,8 @@ public class QueueingDemoListActivity extends AppCompatActivity {
                     }
                     case 2:
                     {
+                        Intent intent = new Intent(QueueingDemoListActivity.this, com.zhangtielei.demos.async.programming.queueing.v3.TaskQueueDemoActivity.class);
+                        startActivity(intent);
                         break;
                     }
                     default:

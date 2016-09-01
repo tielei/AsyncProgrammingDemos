@@ -44,11 +44,6 @@ public class RxJavaBasedTaskQueue implements TaskQueue {
      * 重试次数超过MAX_RETRIES, 任务则最终失败.
      */
     private static final int MAX_RETRIES = 3;
-    /**
-     * 当前任务的执行次数记录(当尝试超过MAX_RETRIES时就最终失败)
-     */
-    private int runCount;
-
 
     @Override
     public <R> Observable<R> addTask(Task<R> task) {
@@ -122,25 +117,25 @@ public class RxJavaBasedTaskQueue implements TaskQueue {
 
             }
         });
-        runCount = 1;
     }
 
     public void taskComplete(QueueElement element) {
+        element.runCount++;
         Log.d(TAG, "task (" + element.task.getTaskId() + ") complete");
         finishTask(element, null);
     }
 
     public void taskFailed(QueueElement element, Throwable error) {
+        element.runCount++;
         Task<?> task = element.task;
-        if (runCount < MAX_RETRIES && !stopped) {
+        if (element.runCount < MAX_RETRIES && !stopped) {
             //可以继续尝试
-            Log.d(TAG, "task (" + task.getTaskId() + ") failed, try again. runCount: " + runCount);
+            Log.d(TAG, "task (" + task.getTaskId() + ") failed, try again. runCount: " + element.runCount);
             launchNextTask(element);
-            runCount++;
         }
         else {
             //最终失败
-            Log.d(TAG, "task (" + task.getTaskId() + ") failed, final failed! runCount: " + runCount);
+            Log.d(TAG, "task (" + task.getTaskId() + ") failed, final failed! runCount: " + element.runCount);
             finishTask(element, error);
         }
     }
@@ -185,6 +180,10 @@ public class RxJavaBasedTaskQueue implements TaskQueue {
          * 用于执行完任务回调的Subscriber.
          */
         public Subscriber<? super R> subscriber;
+        /**
+         * 任务已经执行的次数, 失败超过MAX_RETRIES次就算失败
+         */
+        public int runCount;
         /**
          * 可能的任务执行结果.
          * 如果任务没有返回结果, 那么这个值为null

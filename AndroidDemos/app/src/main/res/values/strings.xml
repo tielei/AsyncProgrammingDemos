@@ -51,6 +51,7 @@
 
     <string name="queueing_demo1_description">本页面演示使用TSQ来实现任务队列(这种方式在客户端编程中很少见)</string>
     <string name="queueing_demo2_description">本页面演示使用"异步+Callback"方式实现任务队列</string>
+    <string name="queueing_demo3_description">本页面演示使用RxJava实现任务队列</string>
 
 
     <string name="title_activity_multi_requests_demo">MultiRequestsDemoActivity</string>

@@ -16,17 +16,16 @@
 
 package com.zhangtielei.demos.async.programming.queueing.v3.mock;
 
-import android.os.Handler;
-import android.os.Looper;
 import com.zhangtielei.demos.async.programming.queueing.v3.Task;
 import rx.Observable;
 import rx.Subscriber;
-import rx.android.schedulers.HandlerScheduler;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Tielei Zhang on 16/9/1.
@@ -39,7 +38,6 @@ public class MockAsyncTask implements Task<Void> {
     private String taskId;
 
     private ExecutorService executorService = Executors.newCachedThreadPool();
-    private Handler mainHandler = new Handler(Looper.getMainLooper());
     private Random rand1 = new Random();
     private Random rand2 = new Random();
 
@@ -57,10 +55,30 @@ public class MockAsyncTask implements Task<Void> {
         return Observable.create(new Observable.OnSubscribe<Void>() {
             @Override
             public void call(Subscriber<? super Void> subscriber) {
+                //任务随机执行0~3秒
+                try {
+                    TimeUnit.MILLISECONDS.sleep(rand1.nextInt(3000));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                //模拟失败情况: 以80%的概率失败
+                Exception error = null;
+                if (rand2.nextInt(10) < 8) {
+                    error = new RuntimeException("runtime error...");
+                }
+
+                if (error == null) {
+                    //当前异步任务没有返回数据, 不用调用onNext
+                    subscriber.onCompleted();
+                }
+                else {
+                    subscriber.onError(error);
+                }
 
             }
         }).subscribeOn(Schedulers.from(executorService))
-                .observeOn(HandlerScheduler.from(mainHandler));
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
 

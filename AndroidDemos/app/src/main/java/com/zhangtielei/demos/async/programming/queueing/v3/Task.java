@@ -14,17 +14,20 @@
  * limitations under the License.
  */
 
-package com.zhangtielei.demos.async.programming.queueing.v2;
+package com.zhangtielei.demos.async.programming.queueing.v3;
+
+import rx.Observable;
 
 /**
  * Created by Tielei Zhang on 16/9/1.
  *
  * 供任务队列执行的异步任务接口定义.
  *
- * 第二个版本: 不再是同步任务, 变成异步任务.
+ * 第三个版本: 不再使用TaskListener传递回调, 而是使用Observable.
  *
+ * @param <R> 异步任务执行完要返回的数据类型.
  */
-public interface Task {
+public interface Task <R> {
     /**
      * 唯一标识当前任务的ID
      * @return
@@ -32,34 +35,12 @@ public interface Task {
     String getTaskId();
 
     /**
-     * 由于任务是异步任务, 那么start方法被调用只是启动任务;
-     * 任务完成后会回调TaskListener.
+     *
+     * 启动任务.
      *
      * 注: start方法需在主线程上执行.
+     *
+     * @return 一个Observable. 调用者通过这个Observable获取异步任务执行结果.
      */
-    void start();
-
-    /**
-     * 设置回调监听.
-     * @param listener
-     */
-    void setListener(TaskListener listener);
-
-    /**
-     * 异步任务回调接口.
-     */
-    interface TaskListener {
-        /**
-         * 当前任务完成的回调.
-         * @param task
-         */
-        void taskComplete(Task task);
-        /**
-         * 当前任务执行失败的回调.
-         * @param task
-         * @param cause 失败原因
-         */
-        void taskFailed(Task task, Throwable cause);
-    }
-
+    Observable<R> start();
 }

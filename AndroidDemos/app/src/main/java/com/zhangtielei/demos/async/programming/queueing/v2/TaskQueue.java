@@ -19,11 +19,13 @@ package com.zhangtielei.demos.async.programming.queueing.v2;
 /**
  * Created by Tielei Zhang on 16/9/1.
  * 任务队列接口.
+ *
  * 第二版: 对应第二版的Task接口.
  */
 public interface TaskQueue {
     /**
      * 向队列中添加一个任务.
+     *
      * @param task
      */
     void addTask(Task task);

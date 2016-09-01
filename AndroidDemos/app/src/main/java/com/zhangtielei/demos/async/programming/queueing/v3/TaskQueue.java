@@ -14,47 +14,30 @@
  * limitations under the License.
  */
 
-package com.zhangtielei.demos.async.programming.queueing.v1;
+package com.zhangtielei.demos.async.programming.queueing.v3;
+
+import rx.Observable;
 
 /**
- * Created by Tielei Zhang on 16/8/31.
+ * Created by Tielei Zhang on 16/9/1.
+ *
  * 任务队列接口.
  *
- * 第一版.
+ * 第三版: 对应第三版的Task接口, 并且舍弃TaskQueueListener.
  */
 public interface TaskQueue {
     /**
      * 向队列中添加一个任务.
+     *
      * @param task
+     * @param <R> 异步任务执行完要返回的数据类型.
+     * @return 一个Observable. 调用者通过这个Observable获取异步任务执行结果.
      */
-    void addTask(Task task);
-
-    /**
-     * 设置监听器.
-     * @param listener
-     */
-    void setListener(TaskQueueListener listener);
+    <R> Observable<R> addTask(Task<R> task);
 
     /**
      * 销毁队列.
      * 注: 队列在最后不用的时候, 应该主动销毁它.
      */
     void destroy();
-
-    /**
-     * 任务队列对外监听接口.
-     */
-    interface TaskQueueListener {
-        /**
-         * 任务完成的回调.
-         * @param task
-         */
-        void taskComplete(Task task);
-        /**
-         * 任务最终失败的回调.
-         * @param task
-         * @param cause 失败原因
-         */
-        void taskFailed(Task task, Throwable cause);
-    }
 }

@@ -1,0 +1,67 @@
+/*
+ * Copyright (C) 2016 Tielei Zhang (zhangtielei.com).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.zhangtielei.demos.async.programming.queueing.v3.mock;
+
+import android.os.Handler;
+import android.os.Looper;
+import com.zhangtielei.demos.async.programming.queueing.v3.Task;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.HandlerScheduler;
+import rx.schedulers.Schedulers;
+
+import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+/**
+ * Created by Tielei Zhang on 16/9/1.
+ *
+ * 异步任务的一个假的实现.
+ */
+public class MockAsyncTask implements Task<Void> {
+    private static long taskIdCounter;
+
+    private String taskId;
+
+    private ExecutorService executorService = Executors.newCachedThreadPool();
+    private Handler mainHandler = new Handler(Looper.getMainLooper());
+    private Random rand1 = new Random();
+    private Random rand2 = new Random();
+
+    public MockAsyncTask() {
+        taskId = String.valueOf(++taskIdCounter);
+    }
+
+    @Override
+    public String getTaskId() {
+        return taskId;
+    }
+
+    @Override
+    public Observable<Void> start() {
+        return Observable.create(new Observable.OnSubscribe<Void>() {
+            @Override
+            public void call(Subscriber<? super Void> subscriber) {
+
+            }
+        }).subscribeOn(Schedulers.from(executorService))
+                .observeOn(HandlerScheduler.from(mainHandler));
+    }
+
+
+}

@@ -37,7 +37,7 @@
 
     <string name="queueing_demo_1">（1）演示TSQ实现的任务队列</string>
     <string name="queueing_demo_2">（2）演示通过普通的"异步+Callback"方式实现的任务队列</string>
-    <string name="queueing_demo_3">（2）演示利用RxJava实现的任务队列</string>
+    <string name="queueing_demo_3">（3）演示使用RxJava实现的任务队列</string>
 
     <string name="service_binding_description">本页面用于演示绑定和解绑一个Service的异步过程</string>
     <string name="emoji_download_demo1_description">本页面通过实现一个表情包下载器，来演示全局保存一份上下文的技术</string>

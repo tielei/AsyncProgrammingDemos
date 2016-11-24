@@ -19,7 +19,7 @@
 
     <string name="blog_title_1">（一）异步处理概述举例</string>
     <string name="blog_title_2">（二）异步任务的回调</string>
-    <string name="blog_title_3">（三）执行多个异步任务</string>
+    <string name="blog_title_3">（三）多个异步任务协作</string>
     <string name="blog_title_4">（四）异步任务和队列</string>
     <string name="blog_title_5">（五）异步任务的取消和暂停，以及start ID(未完成)</string>
     <string name="blog_title_6">（六）关于封屏与不封屏(未完成)</string>
@@ -31,9 +31,9 @@
     <string name="emoji_download_demo_4">（4）演示利用支持上下文传递的异步接口来实现表情包下载</string>
 
     <string name="multitask_demo_1">（1）通过一个静态图片多级缓存的例子，演示"多个异步任务先后接续执行"</string>
-    <string name="multitask_demo_2">（2）通过一个同时发起多个网络请求的例子，演示"多个异步任务并发执行，全部完成"</string>
-    <string name="multitask_demo_3">（3）通过一个页面缓存的例子，演示"多个异步任务并发执行，优先完成"</string>
-    <string name="multitask_demo_4">（4）演示使用RxJava merge来实现并发网络请求</string>
+    <string name="multitask_demo_2">（2）通过一个同时发起多个网络请求的例子，演示"多个异步任务并发执行，结果合并"</string>
+    <string name="multitask_demo_3">（3）通过一个页面缓存的例子，演示"多个异步任务并发执行，一方优先"</string>
+    <string name="multitask_demo_4">（4）演示使用RxJava zip来实现并发网络请求</string>
 
     <string name="queueing_demo_1">（1）演示TSQ实现的任务队列</string>
     <string name="queueing_demo_2">（2）演示通过普通的"异步+Callback"方式实现的任务队列</string>
@@ -47,7 +47,7 @@
     <string name="imageloader_demo_description">本页面通过调用一个带有多级缓存的图片下载器，来演示"多个异步任务先后接续执行"的多任务协作关系</string>
     <string name="multireques_demo_description">本页面通过同时发起多个网络请求的例子，来演示"多个异步任务并发执行，全部完成"的多任务协作关系(注意: 本实例多次执行会产生不同的执行时序)</string>
     <string name="pagecaching_demo_description">本页面通过一个页面缓存的例子，来演示"多个异步任务并发执行，优先完成"的多任务协作关系(注意: 本实例多次执行会产生不同的执行时序)</string>
-    <string name="multirequest_rxjava_demo_description">本页面用于演示如何使用RxJava的merge操作来处理并发的两个请求(注意: 本实例多次执行会产生不同的执行时序)</string>
+    <string name="multirequest_rxjava_demo_description">本页面用于演示如何使用RxJava的zip操作来处理并发的两个请求(注意: 本实例多次执行会产生不同的执行时序)</string>
 
     <string name="queueing_demo1_description">本页面演示使用TSQ来实现任务队列(这种方式在客户端编程中很少见)</string>
     <string name="queueing_demo2_description">本页面演示使用"异步+Callback"方式实现任务队列</string>

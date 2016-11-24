@@ -32,7 +32,11 @@ import com.zhangtielei.demos.async.programming.multitask.simultaneousrequests.mo
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
+import rx.functions.Func2;
 import rx.observables.AsyncOnSubscribe;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 演示如何使用RxJava merge操作来处理两个请求同时发生的情况.
@@ -131,32 +135,36 @@ public class MultiRequestsDemoActivity extends AppCompatActivity {
 
         TextLogUtil.println(logTextView, "Start request1 & request2...");
 
-        //把两个Observable表示的request用merge连接起来
-        Observable.merge(request1, request2)
-                .subscribe(new Subscriber<Object>() {
-                    private HttpResponse1 response1;
-                    private HttpResponse2 response2;
+        //对于两个Observable表示的request，用zip合并它们的结果
+        Observable.zip(request1, request2, new Func2<HttpResponse1, HttpResponse2, List<Object>>() {
+            @Override
+            public List<Object> call(HttpResponse1 response1, HttpResponse2 response2) {
+                List<Object> responses = new ArrayList<Object>(2);
+                responses.add(response1);
+                responses.add(response2);
+                return responses;
+            }
+        }).subscribe(new Subscriber<List<Object>>() {
+            private HttpResponse1 response1;
+            private HttpResponse2 response2;
 
-                    @Override
-                    public void onNext(Object response) {
-                        if (response instanceof HttpResponse1) {
-                            response1 = (HttpResponse1) response;
-                        }
-                        else if (response instanceof HttpResponse2) {
-                            response2 = (HttpResponse2) response;
-                        }
-                    }
+            @Override
+            public void onNext(List<Object> responses) {
+                response1 = (HttpResponse1) responses.get(0);
+                response2 = (HttpResponse2) responses.get(1);
+            }
 
-                    @Override
-                    public void onCompleted() {
-                        processData(response1, response2);
-                    }
+            @Override
+            public void onCompleted() {
+                processData(response1, response2);
+            }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        processError(e);
-                    }
-                });
+            @Override
+            public void onError(Throwable e) {
+                processError(e);
+            }
+
+        });
     }
 
     private void processData(HttpResponse1 data1, HttpResponse2 data2) {
